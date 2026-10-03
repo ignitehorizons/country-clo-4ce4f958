@@ -10,33 +10,378 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as DevelopmentRouteImport } from './routes/development'
+import { Route as JoinRouteImport } from './routes/join'
+import { Route as PortalRouteRouteImport } from './routes/portal/route'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as SponsorsRouteImport } from './routes/sponsors'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as PortalIndexRouteImport } from './routes/portal/index'
+import { Route as PortalAmenitiesRouteImport } from './routes/portal/amenities'
+import { Route as PortalApprovalsRouteImport } from './routes/portal/approvals'
+import { Route as PortalBoardRouteImport } from './routes/portal/board'
+import { Route as PortalBulletinRouteImport } from './routes/portal/bulletin'
+import { Route as PortalCalendarRouteImport } from './routes/portal/calendar'
+import { Route as PortalCarpoolRouteImport } from './routes/portal/carpool'
+import { Route as PortalComplaintsRouteImport } from './routes/portal/complaints'
+import { Route as PortalConstructionRouteImport } from './routes/portal/construction'
+import { Route as PortalDirectoryRouteImport } from './routes/portal/directory'
+import { Route as PortalDocumentsRouteImport } from './routes/portal/documents'
+import { Route as PortalLostFoundRouteImport } from './routes/portal/lost-found'
+import { Route as PortalMaintenanceRouteImport } from './routes/portal/maintenance'
+import { Route as PortalMarketplaceRouteImport } from './routes/portal/marketplace'
+import { Route as PortalPackagesRouteImport } from './routes/portal/packages'
+import { Route as PortalPetsRouteImport } from './routes/portal/pets'
+import { Route as PortalProfileRouteImport } from './routes/portal/profile'
+import { Route as PortalSafetyRouteImport } from './routes/portal/safety'
+import { Route as PortalToolsRouteImport } from './routes/portal/tools'
+import { Route as PortalVotingRouteImport } from './routes/portal/voting'
+import { Route as PortalWarrantyRouteImport } from './routes/portal/warranty'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DevelopmentRoute = DevelopmentRouteImport.update({
+  id: '/development',
+  path: '/development',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JoinRoute = JoinRouteImport.update({
+  id: '/join',
+  path: '/join',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalRouteRoute = PortalRouteRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SponsorsRoute = SponsorsRouteImport.update({
+  id: '/sponsors',
+  path: '/sponsors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalIndexRoute = PortalIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalAmenitiesRoute = PortalAmenitiesRouteImport.update({
+  id: '/amenities',
+  path: '/amenities',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalApprovalsRoute = PortalApprovalsRouteImport.update({
+  id: '/approvals',
+  path: '/approvals',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalBoardRoute = PortalBoardRouteImport.update({
+  id: '/board',
+  path: '/board',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalBulletinRoute = PortalBulletinRouteImport.update({
+  id: '/bulletin',
+  path: '/bulletin',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalCalendarRoute = PortalCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalCarpoolRoute = PortalCarpoolRouteImport.update({
+  id: '/carpool',
+  path: '/carpool',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalComplaintsRoute = PortalComplaintsRouteImport.update({
+  id: '/complaints',
+  path: '/complaints',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalConstructionRoute = PortalConstructionRouteImport.update({
+  id: '/construction',
+  path: '/construction',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalDirectoryRoute = PortalDirectoryRouteImport.update({
+  id: '/directory',
+  path: '/directory',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalDocumentsRoute = PortalDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalLostFoundRoute = PortalLostFoundRouteImport.update({
+  id: '/lost-found',
+  path: '/lost-found',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalMaintenanceRoute = PortalMaintenanceRouteImport.update({
+  id: '/maintenance',
+  path: '/maintenance',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalMarketplaceRoute = PortalMarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalPackagesRoute = PortalPackagesRouteImport.update({
+  id: '/packages',
+  path: '/packages',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalPetsRoute = PortalPetsRouteImport.update({
+  id: '/pets',
+  path: '/pets',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalProfileRoute = PortalProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalSafetyRoute = PortalSafetyRouteImport.update({
+  id: '/safety',
+  path: '/safety',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalToolsRoute = PortalToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalVotingRoute = PortalVotingRouteImport.update({
+  id: '/voting',
+  path: '/voting',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
+const PortalWarrantyRoute = PortalWarrantyRouteImport.update({
+  id: '/warranty',
+  path: '/warranty',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/portal': typeof PortalRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/development': typeof DevelopmentRoute
+  '/join': typeof JoinRoute
+  '/privacy': typeof PrivacyRoute
+  '/sponsors': typeof SponsorsRoute
+  '/terms': typeof TermsRoute
+  '/portal/amenities': typeof PortalAmenitiesRoute
+  '/portal/approvals': typeof PortalApprovalsRoute
+  '/portal/board': typeof PortalBoardRoute
+  '/portal/bulletin': typeof PortalBulletinRoute
+  '/portal/calendar': typeof PortalCalendarRoute
+  '/portal/carpool': typeof PortalCarpoolRoute
+  '/portal/complaints': typeof PortalComplaintsRoute
+  '/portal/construction': typeof PortalConstructionRoute
+  '/portal/directory': typeof PortalDirectoryRoute
+  '/portal/documents': typeof PortalDocumentsRoute
+  '/portal/lost-found': typeof PortalLostFoundRoute
+  '/portal/maintenance': typeof PortalMaintenanceRoute
+  '/portal/marketplace': typeof PortalMarketplaceRoute
+  '/portal/packages': typeof PortalPackagesRoute
+  '/portal/pets': typeof PortalPetsRoute
+  '/portal/profile': typeof PortalProfileRoute
+  '/portal/safety': typeof PortalSafetyRoute
+  '/portal/tools': typeof PortalToolsRoute
+  '/portal/voting': typeof PortalVotingRoute
+  '/portal/warranty': typeof PortalWarrantyRoute
+  '/portal/': typeof PortalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/development': typeof DevelopmentRoute
+  '/join': typeof JoinRoute
+  '/privacy': typeof PrivacyRoute
+  '/sponsors': typeof SponsorsRoute
+  '/terms': typeof TermsRoute
+  '/portal/amenities': typeof PortalAmenitiesRoute
+  '/portal/approvals': typeof PortalApprovalsRoute
+  '/portal/board': typeof PortalBoardRoute
+  '/portal/bulletin': typeof PortalBulletinRoute
+  '/portal/calendar': typeof PortalCalendarRoute
+  '/portal/carpool': typeof PortalCarpoolRoute
+  '/portal/complaints': typeof PortalComplaintsRoute
+  '/portal/construction': typeof PortalConstructionRoute
+  '/portal/directory': typeof PortalDirectoryRoute
+  '/portal/documents': typeof PortalDocumentsRoute
+  '/portal/lost-found': typeof PortalLostFoundRoute
+  '/portal/maintenance': typeof PortalMaintenanceRoute
+  '/portal/marketplace': typeof PortalMarketplaceRoute
+  '/portal/packages': typeof PortalPackagesRoute
+  '/portal/pets': typeof PortalPetsRoute
+  '/portal/profile': typeof PortalProfileRoute
+  '/portal/safety': typeof PortalSafetyRoute
+  '/portal/tools': typeof PortalToolsRoute
+  '/portal/voting': typeof PortalVotingRoute
+  '/portal/warranty': typeof PortalWarrantyRoute
+  '/portal': typeof PortalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/portal': typeof PortalRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/development': typeof DevelopmentRoute
+  '/join': typeof JoinRoute
+  '/privacy': typeof PrivacyRoute
+  '/sponsors': typeof SponsorsRoute
+  '/terms': typeof TermsRoute
+  '/portal/amenities': typeof PortalAmenitiesRoute
+  '/portal/approvals': typeof PortalApprovalsRoute
+  '/portal/board': typeof PortalBoardRoute
+  '/portal/bulletin': typeof PortalBulletinRoute
+  '/portal/calendar': typeof PortalCalendarRoute
+  '/portal/carpool': typeof PortalCarpoolRoute
+  '/portal/complaints': typeof PortalComplaintsRoute
+  '/portal/construction': typeof PortalConstructionRoute
+  '/portal/directory': typeof PortalDirectoryRoute
+  '/portal/documents': typeof PortalDocumentsRoute
+  '/portal/lost-found': typeof PortalLostFoundRoute
+  '/portal/maintenance': typeof PortalMaintenanceRoute
+  '/portal/marketplace': typeof PortalMarketplaceRoute
+  '/portal/packages': typeof PortalPackagesRoute
+  '/portal/pets': typeof PortalPetsRoute
+  '/portal/profile': typeof PortalProfileRoute
+  '/portal/safety': typeof PortalSafetyRoute
+  '/portal/tools': typeof PortalToolsRoute
+  '/portal/voting': typeof PortalVotingRoute
+  '/portal/warranty': typeof PortalWarrantyRoute
+  '/portal/': typeof PortalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/portal'
+    | '/about'
+    | '/development'
+    | '/join'
+    | '/privacy'
+    | '/sponsors'
+    | '/terms'
+    | '/portal/amenities'
+    | '/portal/approvals'
+    | '/portal/board'
+    | '/portal/bulletin'
+    | '/portal/calendar'
+    | '/portal/carpool'
+    | '/portal/complaints'
+    | '/portal/construction'
+    | '/portal/directory'
+    | '/portal/documents'
+    | '/portal/lost-found'
+    | '/portal/maintenance'
+    | '/portal/marketplace'
+    | '/portal/packages'
+    | '/portal/pets'
+    | '/portal/profile'
+    | '/portal/safety'
+    | '/portal/tools'
+    | '/portal/voting'
+    | '/portal/warranty'
+    | '/portal/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/development'
+    | '/join'
+    | '/privacy'
+    | '/sponsors'
+    | '/terms'
+    | '/portal/amenities'
+    | '/portal/approvals'
+    | '/portal/board'
+    | '/portal/bulletin'
+    | '/portal/calendar'
+    | '/portal/carpool'
+    | '/portal/complaints'
+    | '/portal/construction'
+    | '/portal/directory'
+    | '/portal/documents'
+    | '/portal/lost-found'
+    | '/portal/maintenance'
+    | '/portal/marketplace'
+    | '/portal/packages'
+    | '/portal/pets'
+    | '/portal/profile'
+    | '/portal/safety'
+    | '/portal/tools'
+    | '/portal/voting'
+    | '/portal/warranty'
+    | '/portal'
+  id:
+    | '__root__'
+    | '/'
+    | '/portal'
+    | '/about'
+    | '/development'
+    | '/join'
+    | '/privacy'
+    | '/sponsors'
+    | '/terms'
+    | '/portal/amenities'
+    | '/portal/approvals'
+    | '/portal/board'
+    | '/portal/bulletin'
+    | '/portal/calendar'
+    | '/portal/carpool'
+    | '/portal/complaints'
+    | '/portal/construction'
+    | '/portal/directory'
+    | '/portal/documents'
+    | '/portal/lost-found'
+    | '/portal/maintenance'
+    | '/portal/marketplace'
+    | '/portal/packages'
+    | '/portal/pets'
+    | '/portal/profile'
+    | '/portal/safety'
+    | '/portal/tools'
+    | '/portal/voting'
+    | '/portal/warranty'
+    | '/portal/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PortalRouteRoute: typeof PortalRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  DevelopmentRoute: typeof DevelopmentRoute
+  JoinRoute: typeof JoinRoute
+  PrivacyRoute: typeof PrivacyRoute
+  SponsorsRoute: typeof SponsorsRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +393,266 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/development': {
+      id: '/development'
+      path: '/development'
+      fullPath: '/development'
+      preLoaderRoute: typeof DevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/join': {
+      id: '/join'
+      path: '/join'
+      fullPath: '/join'
+      preLoaderRoute: typeof JoinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sponsors': {
+      id: '/sponsors'
+      path: '/sponsors'
+      fullPath: '/sponsors'
+      preLoaderRoute: typeof SponsorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal/': {
+      id: '/portal/'
+      path: '/'
+      fullPath: '/portal/'
+      preLoaderRoute: typeof PortalIndexRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/amenities': {
+      id: '/portal/amenities'
+      path: '/amenities'
+      fullPath: '/portal/amenities'
+      preLoaderRoute: typeof PortalAmenitiesRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/approvals': {
+      id: '/portal/approvals'
+      path: '/approvals'
+      fullPath: '/portal/approvals'
+      preLoaderRoute: typeof PortalApprovalsRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/board': {
+      id: '/portal/board'
+      path: '/board'
+      fullPath: '/portal/board'
+      preLoaderRoute: typeof PortalBoardRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/bulletin': {
+      id: '/portal/bulletin'
+      path: '/bulletin'
+      fullPath: '/portal/bulletin'
+      preLoaderRoute: typeof PortalBulletinRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/calendar': {
+      id: '/portal/calendar'
+      path: '/calendar'
+      fullPath: '/portal/calendar'
+      preLoaderRoute: typeof PortalCalendarRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/carpool': {
+      id: '/portal/carpool'
+      path: '/carpool'
+      fullPath: '/portal/carpool'
+      preLoaderRoute: typeof PortalCarpoolRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/complaints': {
+      id: '/portal/complaints'
+      path: '/complaints'
+      fullPath: '/portal/complaints'
+      preLoaderRoute: typeof PortalComplaintsRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/construction': {
+      id: '/portal/construction'
+      path: '/construction'
+      fullPath: '/portal/construction'
+      preLoaderRoute: typeof PortalConstructionRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/directory': {
+      id: '/portal/directory'
+      path: '/directory'
+      fullPath: '/portal/directory'
+      preLoaderRoute: typeof PortalDirectoryRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/documents': {
+      id: '/portal/documents'
+      path: '/documents'
+      fullPath: '/portal/documents'
+      preLoaderRoute: typeof PortalDocumentsRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/lost-found': {
+      id: '/portal/lost-found'
+      path: '/lost-found'
+      fullPath: '/portal/lost-found'
+      preLoaderRoute: typeof PortalLostFoundRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/maintenance': {
+      id: '/portal/maintenance'
+      path: '/maintenance'
+      fullPath: '/portal/maintenance'
+      preLoaderRoute: typeof PortalMaintenanceRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/marketplace': {
+      id: '/portal/marketplace'
+      path: '/marketplace'
+      fullPath: '/portal/marketplace'
+      preLoaderRoute: typeof PortalMarketplaceRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/packages': {
+      id: '/portal/packages'
+      path: '/packages'
+      fullPath: '/portal/packages'
+      preLoaderRoute: typeof PortalPackagesRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/pets': {
+      id: '/portal/pets'
+      path: '/pets'
+      fullPath: '/portal/pets'
+      preLoaderRoute: typeof PortalPetsRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/profile': {
+      id: '/portal/profile'
+      path: '/profile'
+      fullPath: '/portal/profile'
+      preLoaderRoute: typeof PortalProfileRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/safety': {
+      id: '/portal/safety'
+      path: '/safety'
+      fullPath: '/portal/safety'
+      preLoaderRoute: typeof PortalSafetyRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/tools': {
+      id: '/portal/tools'
+      path: '/tools'
+      fullPath: '/portal/tools'
+      preLoaderRoute: typeof PortalToolsRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/voting': {
+      id: '/portal/voting'
+      path: '/voting'
+      fullPath: '/portal/voting'
+      preLoaderRoute: typeof PortalVotingRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
+    '/portal/warranty': {
+      id: '/portal/warranty'
+      path: '/warranty'
+      fullPath: '/portal/warranty'
+      preLoaderRoute: typeof PortalWarrantyRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
   }
 }
 
+interface PortalRouteRouteChildren {
+  PortalAmenitiesRoute: typeof PortalAmenitiesRoute
+  PortalApprovalsRoute: typeof PortalApprovalsRoute
+  PortalBoardRoute: typeof PortalBoardRoute
+  PortalBulletinRoute: typeof PortalBulletinRoute
+  PortalCalendarRoute: typeof PortalCalendarRoute
+  PortalCarpoolRoute: typeof PortalCarpoolRoute
+  PortalComplaintsRoute: typeof PortalComplaintsRoute
+  PortalConstructionRoute: typeof PortalConstructionRoute
+  PortalDirectoryRoute: typeof PortalDirectoryRoute
+  PortalDocumentsRoute: typeof PortalDocumentsRoute
+  PortalLostFoundRoute: typeof PortalLostFoundRoute
+  PortalMaintenanceRoute: typeof PortalMaintenanceRoute
+  PortalMarketplaceRoute: typeof PortalMarketplaceRoute
+  PortalPackagesRoute: typeof PortalPackagesRoute
+  PortalPetsRoute: typeof PortalPetsRoute
+  PortalProfileRoute: typeof PortalProfileRoute
+  PortalSafetyRoute: typeof PortalSafetyRoute
+  PortalToolsRoute: typeof PortalToolsRoute
+  PortalVotingRoute: typeof PortalVotingRoute
+  PortalWarrantyRoute: typeof PortalWarrantyRoute
+  PortalIndexRoute: typeof PortalIndexRoute
+}
+
+const PortalRouteRouteChildren: PortalRouteRouteChildren = {
+  PortalAmenitiesRoute: PortalAmenitiesRoute,
+  PortalApprovalsRoute: PortalApprovalsRoute,
+  PortalBoardRoute: PortalBoardRoute,
+  PortalBulletinRoute: PortalBulletinRoute,
+  PortalCalendarRoute: PortalCalendarRoute,
+  PortalCarpoolRoute: PortalCarpoolRoute,
+  PortalComplaintsRoute: PortalComplaintsRoute,
+  PortalConstructionRoute: PortalConstructionRoute,
+  PortalDirectoryRoute: PortalDirectoryRoute,
+  PortalDocumentsRoute: PortalDocumentsRoute,
+  PortalLostFoundRoute: PortalLostFoundRoute,
+  PortalMaintenanceRoute: PortalMaintenanceRoute,
+  PortalMarketplaceRoute: PortalMarketplaceRoute,
+  PortalPackagesRoute: PortalPackagesRoute,
+  PortalPetsRoute: PortalPetsRoute,
+  PortalProfileRoute: PortalProfileRoute,
+  PortalSafetyRoute: PortalSafetyRoute,
+  PortalToolsRoute: PortalToolsRoute,
+  PortalVotingRoute: PortalVotingRoute,
+  PortalWarrantyRoute: PortalWarrantyRoute,
+  PortalIndexRoute: PortalIndexRoute,
+}
+
+const PortalRouteRouteWithChildren = PortalRouteRoute._addFileChildren(
+  PortalRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PortalRouteRoute: PortalRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
+  DevelopmentRoute: DevelopmentRoute,
+  JoinRoute: JoinRoute,
+  PrivacyRoute: PrivacyRoute,
+  SponsorsRoute: SponsorsRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

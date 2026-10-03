@@ -10,6 +10,20 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { CC_AuthProvider } from "@/context/CC_AuthContext";
+
+const SITE_TITLE = "Country Close — A quiet community of neighbors";
+const SITE_DESCRIPTION =
+  "Country Close is a private neighborhood community platform for residents in Lutz, Florida — bulletin board, maintenance requests, calendar, directory, and safety alerts in one place.";
+const OG_DESCRIPTION =
+  "Private neighborhood community platform for Country Close in Lutz, Florida. Bulletin board, maintenance, calendar, directory, and safety alerts — off Facebook, for residents only.";
+const TWITTER_DESCRIPTION =
+  "Private neighborhood community platform for Country Close in Lutz, Florida.";
+// TODO(handover): re-upload to this project's media — currently served from the old project.
+const OG_IMAGE =
+  "https://vibe.filesafe.space/1775231453582117442/assets/552daf8d-fd5e-42b6-83e7-be4464557220.png";
 import { reportVibeError } from "../lib/vibe-error-reporting";
 
 function NotFoundComponent() {
@@ -77,15 +91,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AI Studio App" },
-      { name: "description", content: "AI Studio Generated Project" },
-      { name: "author", content: "AI Studio" },
-      { property: "og:title", content: "AI Studio App" },
-      { property: "og:description", content: "AI Studio Generated Project" },
+      { title: SITE_TITLE },
+      { name: "description", content: SITE_DESCRIPTION },
+      { name: "robots", content: "noindex" },
+      { property: "og:title", content: SITE_TITLE },
+      { property: "og:description", content: OG_DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: SITE_TITLE },
+      { name: "twitter:description", content: TWITTER_DESCRIPTION },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Lato:wght@300;400;700&family=Satisfy&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -117,8 +142,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <TooltipProvider>
+        <CC_AuthProvider>
+          <Toaster />
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </CC_AuthProvider>
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }

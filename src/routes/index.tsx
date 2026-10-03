@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import CC_Home from "@/views/CC_Home";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({ meta: [{ title: "Country Close — A quiet community of neighbors" }] }),
+  component: CC_Home,
 });
-
-function Index() {
-  return <div>Country Close portal — setup in progress</div>;
-}
