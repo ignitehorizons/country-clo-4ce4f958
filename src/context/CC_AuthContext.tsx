@@ -1,7 +1,17 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useContext, useEffect, useCallback } from "react";
+import {
+  getSession,
+  signOut as serverSignOut,
+  type AuthUser,
+  type UserRole,
+} from "../lib/auth.functions";
 
-export type UserRole =
-  "loggedOut" | "resident" | "admin" | "boardMember" | "blockCaptain" | "developerBuyer" | "vendor";
+export type { UserRole } from "../lib/auth.functions";
+
+// Keep the same shape the rest of the app already consumes (CC_PortalGuard,
+// CC_PortalLayout, CC_FeatureGuard, CC_ApprovalQueue): isReady, user,
+// isLoggedIn, userRole, login, logout. The values now come from the real
+// Supabase session, not localStorage.
 
 export interface User {
   role: UserRole;
@@ -10,53 +20,12 @@ export interface User {
   initials: string;
 }
 
-const mockUsers: Record<string, User> = {
-  resident: {
-    firstName: "Jeremy",
-    lastName: "Sidlauskas",
-    initials: "JS",
-    role: "resident",
-  },
-  admin: {
-    firstName: "Jeremy",
-    lastName: "Sidlauskas",
-    initials: "JS",
-    role: "admin",
-  },
-  boardMember: {
-    firstName: "Jeremy",
-    lastName: "Sidlauskas",
-    initials: "JS",
-    role: "boardMember",
-  },
-  developerBuyer: {
-    firstName: "Jeremy",
-    lastName: "Sidlauskas",
-    initials: "JS",
-    role: "developerBuyer",
-  },
-  blockCaptain: {
-    firstName: "Jeremy",
-    lastName: "Sidlauskas",
-    initials: "JS",
-    role: "blockCaptain",
-  },
-  vendor: {
-    firstName: "Jeremy",
-    lastName: "Sidlauskas",
-    initials: "JS",
-    role: "vendor",
-  },
-};
-
-const CYCLE_ROLES: UserRole[] = ["loggedOut", "resident", "admin", "boardMember", "developerBuyer"];
-
 interface AuthContextType {
   isReady: boolean;
   user: User | null;
   isLoggedIn: boolean;
   userRole: UserRole;
-  login: (role?: UserRole) => void;
+  login: () => void;
   logout: () => void;
 }
 
@@ -69,44 +38,72 @@ export const AuthContext = createContext<AuthContextType>({
   logout: () => {},
 });
 
-export const CC_AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  // Starts logged out on the server and on first client render (so the
-  // server HTML and hydration match), then restores the saved session.
-  const [isReady, setIsReady] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userRole, setUserRole] = useState<UserRole>("loggedOut");
+const DEV_CYCLE_ROLES: UserRole[] = [
+  "loggedOut",
+  "resident",
+  "admin",
+  "boardMember",
+  "developerBuyer",
+];
 
-  useEffect(() => {
+export const CC_AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isReady, setIsReady] = useState(false);
+  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
+
+  const restore = useCallback(async () => {
     try {
-      setIsLoggedIn(localStorage.getItem("cc_dev_logged_in") === "true");
-      setUserRole((localStorage.getItem("cc_dev_role") as UserRole | null) ?? "loggedOut");
+      const { user } = await getSession();
+      setAuthUser(user);
     } catch {
-      // Storage blocked (private mode) — stay logged out.
+      setAuthUser(null);
+    } finally {
+      setIsReady(true);
     }
-    setIsReady(true);
   }, []);
 
-  const login = (role: UserRole = "resident") => {
-    setIsLoggedIn(true);
-    setUserRole(role);
-    localStorage.setItem("cc_dev_logged_in", "true");
-    localStorage.setItem("cc_dev_role", role);
+  useEffect(() => {
+    restore();
+  }, [restore]);
+
+  // DEV-only role override so the existing role-cycle button still works in
+  // the dev preview. In production this branch is dead code (import.meta.env
+  // .DEV is false), so the role always comes from the real session.
+  const [devRoleOverride, setDevRoleOverride] = useState<UserRole | null>(null);
+
+  const effectiveRole: UserRole = devRoleOverride ?? authUser?.role ?? "loggedOut";
+  const user: User | null = authUser
+    ? {
+        role: effectiveRole,
+        firstName: authUser.firstName,
+        lastName: authUser.lastName,
+        initials: authUser.initials,
+      }
+    : null;
+
+  const isLoggedIn = !!authUser;
+  const userRole: UserRole = user?.role ?? "loggedOut";
+
+  const login = () => {
+    // No-op placeholder; real sign-in is handled by the sign-in form in
+    // CC_PortalGuard which calls the signIn server function directly.
   };
 
-  const logout = () => {
-    setIsLoggedIn(false);
-    setUserRole("loggedOut");
-    localStorage.setItem("cc_dev_logged_in", "false");
-    localStorage.setItem("cc_dev_role", "loggedOut");
-  };
+  const logout = useCallback(async () => {
+    await serverSignOut();
+    setAuthUser(null);
+    setDevRoleOverride(null);
+    await restore();
+  }, [restore]);
 
   const cycleRole = () => {
-    const idx = CYCLE_ROLES.indexOf(userRole);
-    const nextRole = CYCLE_ROLES[(idx + 1) % CYCLE_ROLES.length] || "loggedOut";
-    if (nextRole === "loggedOut") {
-      logout();
+    const base = userRole;
+    const idx = DEV_CYCLE_ROLES.indexOf(base);
+    const next = DEV_CYCLE_ROLES[(idx + 1) % DEV_CYCLE_ROLES.length] ?? "loggedOut";
+    if (next === "loggedOut") {
+      setDevRoleOverride(null);
+      void logout();
     } else {
-      login(nextRole);
+      setDevRoleOverride(next);
     }
   };
 
@@ -114,7 +111,7 @@ export const CC_AuthProvider = ({ children }: { children: React.ReactNode }) => 
     <AuthContext.Provider
       value={{
         isReady,
-        user: isLoggedIn && userRole !== "loggedOut" ? (mockUsers[userRole] ?? null) : null,
+        user,
         isLoggedIn,
         userRole,
         login,
@@ -122,7 +119,8 @@ export const CC_AuthProvider = ({ children }: { children: React.ReactNode }) => 
       }}
     >
       {children}
-      {/* TODO: Remove DEV toggle before production deployment */}
+      {/* DEV-only role cycle. Hidden in production (import.meta.env.DEV is
+          false). Lets QA preview every role without a real account. */}
       {import.meta.env.DEV && (
         <button
           onClick={cycleRole}
@@ -144,10 +142,7 @@ export const CC_AuthProvider = ({ children }: { children: React.ReactNode }) => 
             cursor: "pointer",
           }}
         >
-          DEV: {userRole}{" "}
-          {isLoggedIn && userRole !== "loggedOut"
-            ? `(${mockUsers[userRole]?.firstName || "Jeremy"})`
-            : ""}
+          DEV: {userRole} {user ? `(${user.firstName})` : ""}
         </button>
       )}
     </AuthContext.Provider>
