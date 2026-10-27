@@ -12,7 +12,6 @@ export const CC_PortalGuard = () => {
   const [mode, setMode] = useState<Mode>("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [imgError, setImgError] = useState(false);
   const [busy, setBusy] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
   const [formSuccess, setFormSuccess] = useState<string | null>(null);
@@ -96,26 +95,12 @@ export const CC_PortalGuard = () => {
           </Link>
         </div>
 
-        <div className="mx-auto h-[48px] mb-6 flex justify-center items-center">
-          {!imgError ? (
-            <img
-              src="https://vibe.filesafe.space/1775231453582117442/attachments/af76dd37-5259-4112-9afd-06ad80348466.png"
-              alt="Country Close"
-              style={{
-                height: "44px",
-                width: "auto",
-                objectFit: "contain",
-                display: "block",
-                margin: "0 auto",
-              }}
-              onError={() => setImgError(true)}
-            />
-          ) : (
-            <div className="h-[64px] w-[64px] bg-primary rounded-full flex items-center justify-center">
-              <span className="text-white font-display text-2xl font-bold">CC</span>
-            </div>
-          )}
-        </div>
+        <Link
+          to="/"
+          className="inline-flex items-center h-[48px] mb-6 font-display text-[28px] font-extrabold tracking-tight text-bark hover:opacity-80 transition-opacity"
+        >
+          neighbor<span className="text-accent">space</span>
+        </Link>
 
         <h1 className="font-display font-bold text-[28px] text-bark mb-2">
           {mode === "signin"
@@ -127,7 +112,7 @@ export const CC_PortalGuard = () => {
 
         <p className="font-body text-[15px] text-text-light leading-[1.6] mb-8">
           {mode === "signin"
-            ? "CountryClose.com is a private platform for Country Close residents only. Please sign in to continue."
+            ? "neighborspace.app is a private platform for community members only. Please sign in to continue."
             : mode === "signup"
               ? "Sign up with your email. We'll send a confirmation link before you can sign in."
               : "Enter your email and we'll send a link to reset your password."}
@@ -264,7 +249,7 @@ export const CC_PortalGuard = () => {
 
         <div className="mt-6 flex items-center justify-center gap-1.5 text-text-light">
           <Lock size={12} />
-          <span className="font-body text-[12px]">Secured by CountryClose</span>
+          <span className="font-body text-[12px]">Secured by neighborspace</span>
         </div>
       </div>
     </div>
