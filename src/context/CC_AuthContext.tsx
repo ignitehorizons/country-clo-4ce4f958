@@ -70,18 +70,25 @@ export const CC_AuthProvider = ({ children }: { children: React.ReactNode }) => 
   // .DEV is false), so the role always comes from the real session.
   const [devRoleOverride, setDevRoleOverride] = useState<UserRole | null>(null);
 
-  const effectiveRole: UserRole = devRoleOverride ?? authUser?.role ?? "loggedOut";
-  const user: User | null = authUser
-    ? {
-        role: effectiveRole,
-        firstName: authUser.firstName,
-        lastName: authUser.lastName,
-        initials: authUser.initials,
-      }
-    : null;
+  // When a DEV role override is active, treat it as a signed-in session so
+  // the portal guard and feature gates actually render the previewed role.
+  // In production import.meta.env.DEV is false, so this is dead code and the
+  // role always comes from the real Supabase session.
+  const devActive = import.meta.env.DEV && devRoleOverride !== null;
 
-  const isLoggedIn = !!authUser;
-  const userRole: UserRole = user?.role ?? "loggedOut";
+  const effectiveRole: UserRole = devRoleOverride ?? authUser?.role ?? "loggedOut";
+  const user: User | null =
+    authUser || devActive
+      ? {
+          role: effectiveRole,
+          firstName: authUser?.firstName ?? "Dev",
+          lastName: authUser?.lastName ?? "Preview",
+          initials: authUser?.initials ?? "DV",
+        }
+      : null;
+
+  const isLoggedIn = !!authUser || devActive;
+  const userRole: UserRole = effectiveRole;
 
   const login = () => {
     // No-op placeholder; real sign-in is handled by the sign-in form in
@@ -96,15 +103,12 @@ export const CC_AuthProvider = ({ children }: { children: React.ReactNode }) => 
   }, [restore]);
 
   const cycleRole = () => {
-    const base = userRole;
+    const base = devRoleOverride ?? authUser?.role ?? "loggedOut";
     const idx = DEV_CYCLE_ROLES.indexOf(base);
     const next = DEV_CYCLE_ROLES[(idx + 1) % DEV_CYCLE_ROLES.length] ?? "loggedOut";
-    if (next === "loggedOut") {
-      setDevRoleOverride(null);
-      void logout();
-    } else {
-      setDevRoleOverride(next);
-    }
+    // Cycling to "loggedOut" clears the DEV override so you drop back to your
+    // real session (or the signed-out state). It never destroys a real session.
+    setDevRoleOverride(next === "loggedOut" ? null : next);
   };
 
   return (
