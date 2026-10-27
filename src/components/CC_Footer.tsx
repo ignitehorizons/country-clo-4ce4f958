@@ -54,6 +54,12 @@ export const CC_Footer = () => {
                 Contact
               </Link>
               <Link
+                to="/demo"
+                className="font-body text-sm text-white hover:text-accent transition-colors"
+              >
+                Book a demo
+              </Link>
+              <Link
                 to="/portal"
                 className="font-body text-sm text-white hover:text-accent transition-colors"
               >

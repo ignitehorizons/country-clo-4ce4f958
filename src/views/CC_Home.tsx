@@ -42,8 +42,7 @@ export default function CC_Home() {
         <div
           className="absolute inset-0 w-full h-full pointer-events-none"
           style={{
-            background:
-              "linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #0F172A 100%)",
+            background: "linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #0F172A 100%)",
             transform: `translateY(${Math.min(scrollY * 0.4, 30)}px)`,
           }}
         />
@@ -68,8 +67,7 @@ export default function CC_Home() {
               className="mt-6 font-display font-extrabold leading-[1.05] tracking-tight text-white animate-text-reveal pb-2"
               style={{ fontSize: "clamp(40px, 6vw, 72px)" }}
             >
-              The operating system for{" "}
-              <span className="text-accent">connected communities</span>
+              The operating system for <span className="text-accent">connected communities</span>
             </h1>
             <p className="mt-6 font-body text-[20px] font-light leading-relaxed text-white/80 max-w-xl mx-auto md:mx-0">
               Dues, maintenance, violations, voting, and resident communication — one platform for
@@ -84,7 +82,7 @@ export default function CC_Home() {
                 See pricing
               </Link>
               <Link
-                to="/contact"
+                to="/demo"
                 className="w-full sm:w-auto flex items-center justify-center h-14 rounded-[100px] border-2 border-white/30 bg-transparent px-8 text-base font-semibold text-white transition-all hover:bg-white/10 hover:text-white"
               >
                 Book a demo
@@ -118,10 +116,7 @@ export default function CC_Home() {
                     { label: "Violations", value: "3", icon: ShieldAlert },
                     { label: "Active votes", value: "2", icon: Vote },
                   ].map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="rounded-lg border border-border bg-white p-4"
-                    >
+                    <div key={stat.label} className="rounded-lg border border-border bg-white p-4">
                       <stat.icon className="h-5 w-5 text-accent" />
                       <div className="mt-3 font-display text-[22px] font-bold text-bark">
                         {stat.value}
@@ -364,7 +359,7 @@ export default function CC_Home() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              to="/contact"
+              to="/demo"
               className="inline-flex items-center justify-center h-14 rounded-[100px] bg-white px-10 font-body text-[18px] font-bold text-accent transition-all hover:translate-y-[-3px] hover:shadow-[0_8px_32px_rgba(0,0,0,0.2)] active:translate-y-0 active:scale-[0.98]"
             >
               Book a demo

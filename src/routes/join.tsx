@@ -13,8 +13,7 @@ export const Route = createFileRoute("/join")({
       { property: "og:title", content: "Join | neighborspace" },
       {
         property: "og:description",
-        content:
-          "Join your community on neighborspace — free for verified residents.",
+        content: "Join your community on neighborspace — free for verified residents.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

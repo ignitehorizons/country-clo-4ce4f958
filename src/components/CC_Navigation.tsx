@@ -116,7 +116,13 @@ export const CC_Navigation = () => {
           ))}
         </div>
 
-        <div className="flex-1 flex justify-end items-center gap-4">
+        <div className="flex-1 flex justify-end items-center gap-3">
+          <Link
+            to="/demo"
+            className="hidden md:inline-flex items-center justify-center border-2 border-accent/40 bg-transparent text-accent font-body font-bold text-[15px] rounded-[100px] px-[20px] py-[10px] transition-all duration-200 ease-out hover:bg-accent hover:text-white"
+          >
+            Book a demo
+          </Link>
           <Link
             to="/portal"
             className="hidden md:inline-flex items-center justify-center bg-accent text-white font-body font-bold text-[15px] rounded-[100px] px-[24px] py-[10px] border-none transition-all duration-200 ease-out hover:bg-accent-hover hover:translate-y-[-2px] hover:shadow-[0_6px_20px_rgba(2,132,199,0.35)]"
@@ -166,9 +172,16 @@ export const CC_Navigation = () => {
             </NavLink>
           ))}
           <NavLink
+            to="/demo"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-accent font-display text-[28px]"
+          >
+            Book a demo
+          </NavLink>
+          <NavLink
             to="/portal"
             onClick={() => setMobileMenuOpen(false)}
-            className="text-accent font-display text-[28px] mt-4"
+            className="text-white font-display text-[28px] mt-4"
           >
             Member Portal
           </NavLink>

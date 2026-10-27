@@ -156,8 +156,12 @@ function CC_Pricing() {
 
           <p className="mt-10 text-center font-body text-[14px] text-text-light">
             Need something custom?{" "}
+            <Link to="/demo" className="font-semibold text-accent hover:underline">
+              Book a demo
+            </Link>{" "}
+            or{" "}
             <Link to="/contact" className="font-semibold text-accent hover:underline">
-              Talk to our team
+              talk to our team
             </Link>
             . Enterprise and 500+ unit portfolios are priced per community.
           </p>
@@ -191,7 +195,9 @@ function CC_Pricing() {
             ].map((item) => (
               <div key={item.q} className="rounded-xl border border-border bg-cream p-6">
                 <h3 className="font-display text-[17px] font-bold text-bark">{item.q}</h3>
-                <p className="mt-2 font-body text-[15px] leading-relaxed text-text-light">{item.a}</p>
+                <p className="mt-2 font-body text-[15px] leading-relaxed text-text-light">
+                  {item.a}
+                </p>
               </div>
             ))}
           </div>
@@ -211,7 +217,7 @@ function CC_Pricing() {
             Book a 20-minute demo and we'll map it to your community.
           </p>
           <Link
-            to="/contact"
+            to="/demo"
             className="mt-8 inline-flex items-center justify-center h-14 rounded-[100px] bg-white px-10 font-body text-[18px] font-bold text-accent transition-all hover:translate-y-[-3px] hover:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
           >
             Book a demo <ArrowRight className="ml-2 h-5 w-5" />

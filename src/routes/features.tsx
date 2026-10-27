@@ -130,9 +130,7 @@ function CC_Features() {
                 <h2 className="font-display text-[clamp(26px,3.5vw,36px)] font-bold text-bark">
                   {group.title}
                 </h2>
-                <p className="mt-2 font-body text-[17px] text-text-light max-w-2xl">
-                  {group.desc}
-                </p>
+                <p className="mt-2 font-body text-[17px] text-text-light max-w-2xl">{group.desc}</p>
               </div>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {group.items.map((item, i) => (
@@ -150,9 +148,7 @@ function CC_Features() {
                   </div>
                 ))}
               </div>
-              {gi < FEATURE_GROUPS.length - 1 && (
-                <div className="mt-16 h-px w-full bg-border" />
-              )}
+              {gi < FEATURE_GROUPS.length - 1 && <div className="mt-16 h-px w-full bg-border" />}
             </div>
           ))}
         </div>

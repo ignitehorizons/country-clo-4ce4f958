@@ -8,8 +8,7 @@ import { Check, Loader2, AlertCircle } from "lucide-react";
 
 const inputClass =
   "w-full p-[12px_16px] border border-border rounded-[10px] font-body text-[15px] text-text bg-white focus:border-accent focus:outline-hidden focus:ring-[3px] focus:ring-accent/15 transition-all";
-const labelClass =
-  "block font-body font-semibold text-[13px] text-bark tracking-[0.3px] mb-[6px]";
+const labelClass = "block font-body font-semibold text-[13px] text-bark tracking-[0.3px] mb-[6px]";
 
 function CC_Contact() {
   useScrollReveal();
@@ -29,8 +28,10 @@ function CC_Contact() {
 
     const form = e.currentTarget as HTMLFormElement;
     const get = (id: string) =>
-      (form.querySelector(`#${id}`) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null)
-        ?.value ?? "";
+      (
+        form.querySelector(`#${id}`) as
+          HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null
+      )?.value ?? "";
 
     const data = {
       firstName: get("firstName"),
@@ -139,7 +140,12 @@ function CC_Contact() {
                       <label htmlFor="phone" className={labelClass}>
                         Phone
                       </label>
-                      <input id="phone" type="tel" placeholder="(555) 555-5555" className={inputClass} />
+                      <input
+                        id="phone"
+                        type="tel"
+                        placeholder="(555) 555-5555"
+                        className={inputClass}
+                      />
                     </div>
                   </div>
 
@@ -248,8 +254,7 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: "Contact | neighborspace" },
       {
         property: "og:description",
-        content:
-          "Book a free demo or talk to the neighborspace team about your community.",
+        content: "Book a free demo or talk to the neighborspace team about your community.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

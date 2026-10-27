@@ -94,9 +94,9 @@ const CC_Sponsors = () => {
               Grow your business.
             </h2>
             <p className="mt-4 max-w-lg font-body text-[17px] leading-[1.7] text-cream/85">
-              Community partner listings put your business in front of households who already
-              trust their neighbors' recommendations. No algorithms. No competing ads. Just your
-              business, front and center.
+              Community partner listings put your business in front of households who already trust
+              their neighbors' recommendations. No algorithms. No competing ads. Just your business,
+              front and center.
             </p>
           </div>
 

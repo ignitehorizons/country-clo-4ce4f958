@@ -13,8 +13,7 @@ export const Route = createFileRoute("/sponsors")({
       { property: "og:title", content: "Partners | neighborspace" },
       {
         property: "og:description",
-        content:
-          "Become a neighborspace community partner and reach verified local households.",
+        content: "Become a neighborspace community partner and reach verified local households.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

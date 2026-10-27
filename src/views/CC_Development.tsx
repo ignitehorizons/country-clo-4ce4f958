@@ -32,7 +32,9 @@ export default function CC_Development() {
         />
 
         <div className="relative z-10 px-4 py-20">
-          <span className="font-accent text-[22px] text-accent font-semibold">For Developers & Builders</span>
+          <span className="font-accent text-[22px] text-accent font-semibold">
+            For Developers & Builders
+          </span>
           <h1 className="mt-4 font-display text-[clamp(40px,6vw,80px)] font-extrabold leading-[1.1] text-white">
             Build Community
             <br />

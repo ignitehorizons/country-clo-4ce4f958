@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as DevelopmentRouteImport } from './routes/development'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as JoinRouteImport } from './routes/join'
@@ -56,6 +57,11 @@ const AboutRoute = AboutRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DevelopmentRoute = DevelopmentRouteImport.update({
@@ -214,6 +220,7 @@ export interface FileRoutesByFullPath {
   '/portal': typeof PortalRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/demo': typeof DemoRoute
   '/development': typeof DevelopmentRoute
   '/features': typeof FeaturesRoute
   '/join': typeof JoinRoute
@@ -248,6 +255,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/demo': typeof DemoRoute
   '/development': typeof DevelopmentRoute
   '/features': typeof FeaturesRoute
   '/join': typeof JoinRoute
@@ -284,6 +292,7 @@ export interface FileRoutesById {
   '/portal': typeof PortalRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/demo': typeof DemoRoute
   '/development': typeof DevelopmentRoute
   '/features': typeof FeaturesRoute
   '/join': typeof JoinRoute
@@ -321,6 +330,7 @@ export interface FileRouteTypes {
     | '/portal'
     | '/about'
     | '/contact'
+    | '/demo'
     | '/development'
     | '/features'
     | '/join'
@@ -355,6 +365,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/demo'
     | '/development'
     | '/features'
     | '/join'
@@ -390,6 +401,7 @@ export interface FileRouteTypes {
     | '/portal'
     | '/about'
     | '/contact'
+    | '/demo'
     | '/development'
     | '/features'
     | '/join'
@@ -426,6 +438,7 @@ export interface RootRouteChildren {
   PortalRouteRoute: typeof PortalRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  DemoRoute: typeof DemoRoute
   DevelopmentRoute: typeof DevelopmentRoute
   FeaturesRoute: typeof FeaturesRoute
   JoinRoute: typeof JoinRoute
@@ -457,6 +470,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/development': {
@@ -729,6 +749,7 @@ const rootRouteChildren: RootRouteChildren = {
   PortalRouteRoute: PortalRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  DemoRoute: DemoRoute,
   DevelopmentRoute: DevelopmentRoute,
   FeaturesRoute: FeaturesRoute,
   JoinRoute: JoinRoute,
