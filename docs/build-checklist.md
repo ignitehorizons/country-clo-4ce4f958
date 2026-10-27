@@ -42,18 +42,23 @@ Status legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked (n
 
 ## Open Decisions (must lock before Phase 1)
 
-1. ⛔ Feature-flag approach — `violationTracking` (code) vs `violations_module`
-   (spec); keep flags in code or move to per-community DB data. Tier naming
-   (Neighbor/Community/Association/Developer/Enterprise).
-2. ⛔ Notice sender — CRM email/SMS vs dedicated provider (Postmark/Resend).
-   Legal notices need delivery + bounce webhooks.
-3. ⛔ Map provider — Mapbox (current) vs Google vs Leaflet/OSM (cost at scale).
-4. ⛔ Offline mode — ship in v1 or defer to v2.
-5. ⛔ Property-records fallback — Regrid / ATTOM / Pasco Appraiser.
-6. ⛔ Draft purge window + repeat-offender lookback — per-community defaults.
-7. ⛔ Tier placement — included in Standard vs Enterprise add-on.
-8. ⛔ System of record for resident contacts — CRM vs Supabase (both hold
-   resident data today).
+### LOCKED (2026-10-27)
+- ✅ #1 Feature-flag approach: **keep flags in code** (`featureFlags.ts`), flip
+  on/off per tier in config. No schema work. Tier names stay as-is.
+- ✅ #2 Notice sender: **CRM (current integration)** — send notices through the
+  connected CRM email/SMS. ⚠️ ACTION: confirm the CRM offers delivery + bounce
+  webhooks before Phase 5; if not, revisit.
+- ✅ #3 Map provider: **Mapbox (current)** — keep Mapbox (already installed,
+  used in CC_Map). Revisit costs only if scale demands it.
+- ✅ #7 Tier placement: **Standard (included)** — violations module available
+  to all paying communities (Standard tier and up).
+
+### STILL OPEN
+- ⛔ #4 Offline mode — ship in v1 or defer to v2?
+- ⛔ #5 Property-records fallback — Regrid / ATTOM / Pasco Appraiser?
+- ⛔ #6 Draft purge window + repeat-offender lookback — per-community defaults?
+- ⛔ #8 System of record for resident contacts — CRM vs Supabase (both hold
+  resident data today)?
 
 ---
 
