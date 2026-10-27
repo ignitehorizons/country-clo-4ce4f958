@@ -22,7 +22,7 @@ Status legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked (n
 - ✅ Login page rebranded
 - ⬜ Update docs to drop "CountryClose" references
   (architecture.md, project-record.md, decisions.md, cam-violations-spec.md, README.md)
-- ⛔ `featureFlags.ts` tier names + `violationTracking` flag — see Open Decisions #1
+- ✅ `featureFlags.ts` — keep flags in code, tier names as-is (Decision #1 locked)
 
 ## Track 2 — CAM Violations module (per docs/cam-violations-spec.md §9)
 
@@ -40,31 +40,38 @@ Status legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked (n
 
 ---
 
-## Open Decisions (must lock before Phase 1)
+## Open Decisions — ALL LOCKED (2026-10-27)
 
-### LOCKED (2026-10-27)
-- ✅ #1 Feature-flag approach: **keep flags in code** (`featureFlags.ts`), flip
-  on/off per tier in config. No schema work. Tier names stay as-is.
-- ✅ #2 Notice sender: **CRM (current integration)** — send notices through the
-  connected CRM email/SMS. ⚠️ ACTION: confirm the CRM offers delivery + bounce
-  webhooks before Phase 5; if not, revisit.
-- ✅ #3 Map provider: **Mapbox (current)** — keep Mapbox (already installed,
-  used in CC_Map). Revisit costs only if scale demands it.
-- ✅ #7 Tier placement: **Standard (included)** — violations module available
-  to all paying communities (Standard tier and up).
-
-### STILL OPEN
-- ⛔ #4 Offline mode — ship in v1 or defer to v2?
-- ⛔ #5 Property-records fallback — Regrid / ATTOM / Pasco Appraiser?
-- ⛔ #6 Draft purge window + repeat-offender lookback — per-community defaults?
-- ⛔ #8 System of record for resident contacts — CRM vs Supabase (both hold
-  resident data today)?
+1. ✅ Feature-flag approach: **keep flags in code** (`featureFlags.ts`), flip
+   on/off per tier in config. No schema work. Tier names stay as-is.
+2. ✅ Notice sender: **CRM (current integration)** — send notices through the
+   connected CRM email/SMS. ⚠️ ACTION before Phase 5: confirm the CRM offers
+   delivery + bounce webhooks; if not, revisit.
+3. ✅ Map provider: **Mapbox (current)** — keep Mapbox (already installed, used
+   in CC_Map). Revisit costs only if scale demands it.
+4. ✅ Offline mode: **ship in v1** — CAMs can draft violations with no signal;
+   drafts sync when back online. Phase 4 must include a local queue + conflict
+   handling.
+5. ✅ Property-records fallback: **Regrid** — parcel/owner data via API for
+   owner-lookup when the community directory has no match. Usage-based pricing.
+6. ✅ Drafts & lookback: **30-day auto-purge** of unsent drafts; **rolling
+   12-month** repeat-offender lookback by address. Per-community overrides can
+   come later.
+7. ✅ Tier placement: **Standard (included)** — violations module available to
+   all paying communities (Standard tier and up).
+8. ✅ Resident contacts: **CRM is source of truth** — the app reads resident
+   contacts from the CRM and writes updates back there; Supabase is not the
+   system of record for contacts.
 
 ---
 
-## Notes
-- Backend of record: Supabase project (Postgres 17). Cloud (managed backend)
-  is available but not enabled — optional, user-controlled.
-- Connected integrations: payments, form-tracking (CRM), calendar (CRM).
-- Packages installed for violations work: @supabase/supabase-js, mapbox-gl,
-  react-map-gl.
+## Build implications from locked decisions
+- Phase 4 (CAM mobile PWA): needs offline draft queue + sync/conflict handling
+  + PWA installability + camera + GPS.
+- Phase 3 (owner-lookup edge fn): wire Regrid API; key read inside the handler.
+- Phase 1 (schema): add a draft purge job (30d) and a repeat-offender lookback
+  view (rolling 12mo by address).
+- Phase 5 (notices): confirm CRM delivery/bounce webhooks before wiring; if
+  absent, escalate as a blocker.
+- Resident-contact reads in portal views should go through the CRM integration,
+  not a local Supabase contacts table.
