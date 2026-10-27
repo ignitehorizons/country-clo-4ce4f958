@@ -41,6 +41,7 @@ import { Route as PortalPetsRouteImport } from './routes/portal/pets'
 import { Route as PortalProfileRouteImport } from './routes/portal/profile'
 import { Route as PortalSafetyRouteImport } from './routes/portal/safety'
 import { Route as PortalToolsRouteImport } from './routes/portal/tools'
+import { Route as PortalViolationsRouteImport } from './routes/portal/violations'
 import { Route as PortalVotingRouteImport } from './routes/portal/voting'
 import { Route as PortalWarrantyRouteImport } from './routes/portal/warranty'
 
@@ -204,6 +205,11 @@ const PortalToolsRoute = PortalToolsRouteImport.update({
   path: '/tools',
   getParentRoute: () => PortalRouteRoute,
 } as any)
+const PortalViolationsRoute = PortalViolationsRouteImport.update({
+  id: '/violations',
+  path: '/violations',
+  getParentRoute: () => PortalRouteRoute,
+} as any)
 const PortalVotingRoute = PortalVotingRouteImport.update({
   id: '/voting',
   path: '/voting',
@@ -247,6 +253,7 @@ export interface FileRoutesByFullPath {
   '/portal/profile': typeof PortalProfileRoute
   '/portal/safety': typeof PortalSafetyRoute
   '/portal/tools': typeof PortalToolsRoute
+  '/portal/violations': typeof PortalViolationsRoute
   '/portal/voting': typeof PortalVotingRoute
   '/portal/warranty': typeof PortalWarrantyRoute
   '/portal/': typeof PortalIndexRoute
@@ -282,6 +289,7 @@ export interface FileRoutesByTo {
   '/portal/profile': typeof PortalProfileRoute
   '/portal/safety': typeof PortalSafetyRoute
   '/portal/tools': typeof PortalToolsRoute
+  '/portal/violations': typeof PortalViolationsRoute
   '/portal/voting': typeof PortalVotingRoute
   '/portal/warranty': typeof PortalWarrantyRoute
   '/portal': typeof PortalIndexRoute
@@ -319,6 +327,7 @@ export interface FileRoutesById {
   '/portal/profile': typeof PortalProfileRoute
   '/portal/safety': typeof PortalSafetyRoute
   '/portal/tools': typeof PortalToolsRoute
+  '/portal/violations': typeof PortalViolationsRoute
   '/portal/voting': typeof PortalVotingRoute
   '/portal/warranty': typeof PortalWarrantyRoute
   '/portal/': typeof PortalIndexRoute
@@ -357,6 +366,7 @@ export interface FileRouteTypes {
     | '/portal/profile'
     | '/portal/safety'
     | '/portal/tools'
+    | '/portal/violations'
     | '/portal/voting'
     | '/portal/warranty'
     | '/portal/'
@@ -392,6 +402,7 @@ export interface FileRouteTypes {
     | '/portal/profile'
     | '/portal/safety'
     | '/portal/tools'
+    | '/portal/violations'
     | '/portal/voting'
     | '/portal/warranty'
     | '/portal'
@@ -428,6 +439,7 @@ export interface FileRouteTypes {
     | '/portal/profile'
     | '/portal/safety'
     | '/portal/tools'
+    | '/portal/violations'
     | '/portal/voting'
     | '/portal/warranty'
     | '/portal/'
@@ -675,6 +687,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortalToolsRouteImport
       parentRoute: typeof PortalRouteRoute
     }
+    '/portal/violations': {
+      id: '/portal/violations'
+      path: '/violations'
+      fullPath: '/portal/violations'
+      preLoaderRoute: typeof PortalViolationsRouteImport
+      parentRoute: typeof PortalRouteRoute
+    }
     '/portal/voting': {
       id: '/portal/voting'
       path: '/voting'
@@ -711,6 +730,7 @@ interface PortalRouteRouteChildren {
   PortalProfileRoute: typeof PortalProfileRoute
   PortalSafetyRoute: typeof PortalSafetyRoute
   PortalToolsRoute: typeof PortalToolsRoute
+  PortalViolationsRoute: typeof PortalViolationsRoute
   PortalVotingRoute: typeof PortalVotingRoute
   PortalWarrantyRoute: typeof PortalWarrantyRoute
   PortalIndexRoute: typeof PortalIndexRoute
@@ -735,6 +755,7 @@ const PortalRouteRouteChildren: PortalRouteRouteChildren = {
   PortalProfileRoute: PortalProfileRoute,
   PortalSafetyRoute: PortalSafetyRoute,
   PortalToolsRoute: PortalToolsRoute,
+  PortalViolationsRoute: PortalViolationsRoute,
   PortalVotingRoute: PortalVotingRoute,
   PortalWarrantyRoute: PortalWarrantyRoute,
   PortalIndexRoute: PortalIndexRoute,

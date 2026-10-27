@@ -26,17 +26,34 @@ Status legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked (n
 
 ## Track 2 — CAM Violations module (per docs/cam-violations-spec.md §9)
 
-- ⬜ Phase 0 — Recon (live schema, edge-fn patterns, feature flags)
-- ⬜ Phase 1 — Schema + RLS + private storage bucket + atomic gapless counter
-- ⬜ Phase 2 — Rules library admin UI + Country Close rule seed
+- ✅ Phase 0 — Recon (live schema, edge-fn patterns, feature flags)
+- 🟡 Phase 1 — Schema + RLS + private storage bucket + atomic gapless counter
+  - ✅ Migration SQL written: `docs/cam-violations-phase1.sql` (tables, default-deny
+    RLS, `next_violation_number()` atomic counter, append-only triggers on
+    comments/events/internal-notes, private `violation-photos` storage bucket,
+    Country Close rule seed). **ACTION: apply this SQL in the Supabase dashboard
+    and add a `SUPABASE_SERVICE_ROLE_KEY` secret.**
+  - ⬜ Wire `src/lib/violations.functions.ts` to live DB once migration applied
+- ⬜ Phase 2 — Rules library admin UI + Country Close rule seed (seed included in Phase 1 SQL)
 - ⬜ Phase 3 — Edge Functions (draft / autosave / submit / comment / photo / owner-lookup / list)
-- ⬜ Phase 4 — CAM mobile PWA form (camera, GPS, type-ahead, autosave)
+- 🟡 Phase 4 — CAM mobile PWA form (camera, GPS, type-ahead, autosave)
+  - ✅ `/portal/violations` list + filters + status color coding (spec §5)
+  - ✅ New Violation form (spec §3): address/owner, rule type-ahead + Other,
+    narrative, GPS capture via `navigator.geolocation`, photo capture via
+    `<input capture>`, CAM signature attestation, mock gapless numbering
+  - ⬜ Offline draft queue + sync/conflict handling (Decision #4)
+  - ⬜ PWA installability (service worker, manifest)
 - ⬜ Phase 5 — Notices (routing, email+portal link, PDF, delivery/bounce/view logging)
 - ⬜ Phase 6 — Owner portal violation view + proof upload + hearing request
-- ⬜ Phase 7 — Lifecycle engine, color coding, re-inspection, escalation, hearings
-- ⬜ Phase 8 — Dashboard (table, map, filters, export)
+- ⬜ Phase 7 — Lifecycle engine, re-inspection, escalation, hearings
+- ⬜ Phase 8 — Dashboard (map, filters, export)
 - ⬜ Phase 9 — Analytics + consistency report
 - ⬜ Phase 10 — Hardening + field test
+
+### Current mock layer
+- `src/lib/violationsMock.ts` — types + seed rules + mock violations + color
+  coding. Replace with `violations.functions.ts` calls once Phase 1 SQL is
+  applied and the service-role key is added.
 
 ---
 
