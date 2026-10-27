@@ -262,5 +262,3 @@ export const Route = createFileRoute("/contact")({
   }),
   component: CC_Contact,
 });
-
-export default CC_Contact;

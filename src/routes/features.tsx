@@ -224,5 +224,3 @@ export const Route = createFileRoute("/features")({
   }),
   component: CC_Features,
 });
-
-export default CC_Features;

@@ -286,5 +286,3 @@ export const Route = createFileRoute("/pricing")({
   }),
   component: CC_Pricing,
 });
-
-export default CC_Pricing;

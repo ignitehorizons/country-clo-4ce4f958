@@ -120,5 +120,3 @@ export const Route = createFileRoute("/stories")({
   }),
   component: CC_Stories,
 });
-
-export default CC_Stories;

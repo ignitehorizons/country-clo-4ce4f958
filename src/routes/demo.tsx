@@ -427,5 +427,3 @@ export const Route = createFileRoute("/demo")({
   }),
   component: CC_Demo,
 });
-
-export default CC_Demo;
