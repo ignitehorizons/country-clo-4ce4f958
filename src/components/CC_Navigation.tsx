@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import { NavLink, Link } from "@/lib/router-compat";
 import { Menu, X } from "lucide-react";
-import communityConfig from "@/config/communityConfig";
 import { cn } from "@/lib/utils";
 
 export const CC_Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,11 +67,11 @@ export const CC_Navigation = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: "Home", path: "/" },
+    { name: "Features", path: "/features" },
+    { name: "Pricing", path: "/pricing" },
+    { name: "Stories", path: "/stories" },
     { name: "About", path: "/about" },
-    { name: "Join Us", path: "/join" },
-    { name: "Sponsors", path: "/sponsors" },
-    { name: "Development", path: "/development" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -85,29 +83,14 @@ export const CC_Navigation = () => {
         )}
       >
         <div className="flex-1">
-          <Link to="/">
-            {!imgError ? (
-              <img
-                src={
-                  scrolled
-                    ? "https://vibe.filesafe.space/1775231453582117442/attachments/af76dd37-5259-4112-9afd-06ad80348466.png"
-                    : "https://vibe.filesafe.space/1775231453582117442/attachments/21c06b2f-3ba0-45cb-9ca8-eb3e44b03d61.png"
-                }
-                alt="Country Close logo"
-                style={{ height: "36px", width: "auto", objectFit: "contain" }}
-                className="transition-opacity duration-200"
-                onError={() => setImgError(true)}
-              />
-            ) : (
-              <span
-                className={cn(
-                  "font-display text-[18px] font-bold",
-                  !scrolled ? "text-white" : "text-bark",
-                )}
-              >
-                Country Close
-              </span>
+          <Link
+            to="/"
+            className={cn(
+              "font-display text-[20px] font-extrabold tracking-tight transition-colors",
+              !scrolled ? "text-white" : "text-bark",
             )}
+          >
+            neighbor<span className="text-accent">space</span>
           </Link>
         </div>
 
@@ -136,7 +119,7 @@ export const CC_Navigation = () => {
         <div className="flex-1 flex justify-end items-center gap-4">
           <Link
             to="/portal"
-            className="hidden md:inline-flex items-center justify-center bg-[#E8A020] text-[#4A3728] font-body font-bold text-[15px] rounded-[100px] px-[24px] py-[10px] border-none transition-all duration-200 ease-out hover:bg-[#D4911A] hover:translate-y-[-2px] hover:shadow-[0_6px_20px_rgba(232,160,32,0.35)]"
+            className="hidden md:inline-flex items-center justify-center bg-accent text-white font-body font-bold text-[15px] rounded-[100px] px-[24px] py-[10px] border-none transition-all duration-200 ease-out hover:bg-accent-hover hover:translate-y-[-2px] hover:shadow-[0_6px_20px_rgba(2,132,199,0.35)]"
           >
             Member Portal
           </Link>

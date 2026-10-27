@@ -16,9 +16,9 @@
 }
 
 @theme inline {
-  --font-display: "Playfair Display", serif;
-  --font-body: "Lato", sans-serif;
-  --font-accent: "Satisfy", cursive;
+  --font-display: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-accent: "Inter", sans-serif;
 
   --color-text: rgb(var(--rgb-text));
   --color-text-light: rgb(var(--rgb-text-light));
@@ -209,53 +209,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Brand colors — hex values (kept for direct var() usage in inline styles) */
-    --color-primary: #2d5016;
-    --color-primary-light: #3d6b20;
-    --color-secondary: #c4a875;
-    --color-accent: #e8a020;
-    --color-accent-hover: #d4911a;
-    --color-accent-dark: #9e6b15;
-    --color-sky: #6ba3be;
-    --color-cream: #f7f3ed;
-    --color-earth: #8b6914;
-    --color-bark: #4a3728;
+    /* neighborspace brand — Vantaca Navy & Teal */
+    --color-primary: #0f172a;
+    --color-primary-light: #1e293b;
+    --color-secondary: #06b6d4;
+    --color-accent: #0284c7;
+    --color-accent-hover: #0369a1;
+    --color-accent-dark: #075985;
+    --color-sky: #0ea5e9;
+    --color-cream: #f0f9ff;
+    --color-earth: #0f172a;
+    --color-bark: #0f172a;
     --color-white: #ffffff;
-    --color-light-gray: #f0ede8;
-    --color-border: #ddd5c8;
-    --color-text: #3d3229;
-    --color-text-light: #7a6a5a;
+    --color-light-gray: #f1f5f9;
+    --color-border: #e2e8f0;
+    --color-text: #0f172a;
+    --color-text-light: #475569;
 
     /* RGB channel values (space-separated) — enable Tailwind opacity modifiers
        like text-white/75, bg-primary/10, text-cream/70. Without these, Tailwind
        cannot apply alpha to a var(--hex) color and the utility silently
        produces no CSS, causing text to inherit the body color (invisible on
        dark surfaces). */
-    --rgb-primary: 45 80 22;
-    --rgb-primary-light: 61 107 32;
-    --rgb-secondary: 196 168 117;
-    --rgb-accent: 232 160 32;
-    --rgb-accent-hover: 212 145 26;
-    --rgb-accent-dark: 158 107 21;
-    --rgb-sky: 107 163 190;
-    --rgb-cream: 247 243 237;
-    --rgb-earth: 139 105 20;
-    --rgb-bark: 74 55 40;
+    --rgb-primary: 15 23 42;
+    --rgb-primary-light: 30 41 59;
+    --rgb-secondary: 6 182 212;
+    --rgb-accent: 2 132 199;
+    --rgb-accent-hover: 3 105 161;
+    --rgb-accent-dark: 7 89 133;
+    --rgb-sky: 14 165 233;
+    --rgb-cream: 240 249 255;
+    --rgb-earth: 15 23 42;
+    --rgb-bark: 15 23 42;
     --rgb-white: 255 255 255;
-    --rgb-light-gray: 240 237 232;
-    --rgb-border: 221 213 200;
-    --rgb-text: 61 50 41;
-    --rgb-text-light: 122 106 90;
-    --font-display: "Playfair Display", serif;
-    --font-body: "Lato", sans-serif;
-    --font-accent: "Satisfy", cursive;
+    --rgb-light-gray: 241 245 249;
+    --rgb-border: 226 232 240;
+    --rgb-text: 15 23 42;
+    --rgb-text-light: 71 85 105;
+    --font-display: "Inter", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-accent: "Inter", sans-serif;
     --radius-sm: 6px;
     --radius-md: 12px;
     --radius-lg: 20px;
     --radius-pill: 100px;
-    --shadow-sm: 0 2px 8px rgba(45, 80, 22, 0.06);
-    --shadow-md: 0 4px 20px rgba(45, 80, 22, 0.08);
-    --shadow-lg: 0 8px 40px rgba(45, 80, 22, 0.12);
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 4px 20px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 8px 40px rgba(15, 23, 42, 0.12);
     --transition: all 0.2s ease;
 
     /* SHADCN DEFAULTS */
@@ -460,7 +460,7 @@ input:focus,
 textarea:focus,
 select:focus {
   border-color: var(--color-accent) !important;
-  box-shadow: 0 0 0 3px rgba(232, 160, 32, 0.15) !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15) !important;
   transition: all 0.2s ease;
 }
 

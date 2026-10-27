@@ -8,15 +8,19 @@ export const CC_Layout = ({ children }: { children?: React.ReactNode }) => {
 
   useEffect(() => {
     const titles: Record<string, string> = {
-      "/": "Country Close — A quiet community of neighbors",
-      "/about": "About | Country Close",
-      "/join": "Join Us | Country Close",
-      "/sponsors": "Sponsors | Country Close",
-      "/development": "Development | Country Close",
-      "/privacy": "Privacy Policy | Country Close",
-      "/terms": "Terms of Use | Country Close",
+      "/": "neighborspace — The operating system for connected communities",
+      "/about": "About | neighborspace",
+      "/join": "Join | neighborspace",
+      "/sponsors": "Partners | neighborspace",
+      "/development": "Development | neighborspace",
+      "/features": "Features | neighborspace",
+      "/pricing": "Pricing | neighborspace",
+      "/stories": "Stories | neighborspace",
+      "/contact": "Contact | neighborspace",
+      "/privacy": "Privacy Policy | neighborspace",
+      "/terms": "Terms of Use | neighborspace",
     };
-    document.title = titles[location.pathname] || "Country Close";
+    document.title = titles[location.pathname] || "neighborspace";
   }, [location.pathname]);
 
   return (

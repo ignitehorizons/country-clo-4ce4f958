@@ -11,11 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DevelopmentRouteImport } from './routes/development'
+import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as PortalRouteRouteImport } from './routes/portal/route'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
+import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as PortalIndexRouteImport } from './routes/portal/index'
 import { Route as PortalAmenitiesRouteImport } from './routes/portal/amenities'
@@ -49,9 +53,19 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DevelopmentRoute = DevelopmentRouteImport.update({
   id: '/development',
   path: '/development',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JoinRoute = JoinRouteImport.update({
@@ -64,6 +78,11 @@ const PortalRouteRoute = PortalRouteRouteImport.update({
   path: '/portal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -72,6 +91,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const SponsorsRoute = SponsorsRouteImport.update({
   id: '/sponsors',
   path: '/sponsors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoriesRoute = StoriesRouteImport.update({
+  id: '/stories',
+  path: '/stories',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -189,10 +213,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/portal': typeof PortalRouteRouteWithChildren
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/development': typeof DevelopmentRoute
+  '/features': typeof FeaturesRoute
   '/join': typeof JoinRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
+  '/stories': typeof StoriesRoute
   '/terms': typeof TermsRoute
   '/portal/amenities': typeof PortalAmenitiesRoute
   '/portal/approvals': typeof PortalApprovalsRoute
@@ -219,10 +247,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/development': typeof DevelopmentRoute
+  '/features': typeof FeaturesRoute
   '/join': typeof JoinRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
+  '/stories': typeof StoriesRoute
   '/terms': typeof TermsRoute
   '/portal/amenities': typeof PortalAmenitiesRoute
   '/portal/approvals': typeof PortalApprovalsRoute
@@ -251,10 +283,14 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/portal': typeof PortalRouteRouteWithChildren
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/development': typeof DevelopmentRoute
+  '/features': typeof FeaturesRoute
   '/join': typeof JoinRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
+  '/stories': typeof StoriesRoute
   '/terms': typeof TermsRoute
   '/portal/amenities': typeof PortalAmenitiesRoute
   '/portal/approvals': typeof PortalApprovalsRoute
@@ -284,10 +320,14 @@ export interface FileRouteTypes {
     | '/'
     | '/portal'
     | '/about'
+    | '/contact'
     | '/development'
+    | '/features'
     | '/join'
+    | '/pricing'
     | '/privacy'
     | '/sponsors'
+    | '/stories'
     | '/terms'
     | '/portal/amenities'
     | '/portal/approvals'
@@ -314,10 +354,14 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/contact'
     | '/development'
+    | '/features'
     | '/join'
+    | '/pricing'
     | '/privacy'
     | '/sponsors'
+    | '/stories'
     | '/terms'
     | '/portal/amenities'
     | '/portal/approvals'
@@ -345,10 +389,14 @@ export interface FileRouteTypes {
     | '/'
     | '/portal'
     | '/about'
+    | '/contact'
     | '/development'
+    | '/features'
     | '/join'
+    | '/pricing'
     | '/privacy'
     | '/sponsors'
+    | '/stories'
     | '/terms'
     | '/portal/amenities'
     | '/portal/approvals'
@@ -377,10 +425,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PortalRouteRoute: typeof PortalRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   DevelopmentRoute: typeof DevelopmentRoute
+  FeaturesRoute: typeof FeaturesRoute
   JoinRoute: typeof JoinRoute
+  PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   SponsorsRoute: typeof SponsorsRoute
+  StoriesRoute: typeof StoriesRoute
   TermsRoute: typeof TermsRoute
 }
 
@@ -400,11 +452,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/development': {
       id: '/development'
       path: '/development'
       fullPath: '/development'
       preLoaderRoute: typeof DevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/join': {
@@ -421,6 +487,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortalRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -433,6 +506,13 @@ declare module '@tanstack/react-router' {
       path: '/sponsors'
       fullPath: '/sponsors'
       preLoaderRoute: typeof SponsorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stories': {
+      id: '/stories'
+      path: '/stories'
+      fullPath: '/stories'
+      preLoaderRoute: typeof StoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -648,10 +728,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PortalRouteRoute: PortalRouteRouteWithChildren,
   AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   DevelopmentRoute: DevelopmentRoute,
+  FeaturesRoute: FeaturesRoute,
   JoinRoute: JoinRoute,
+  PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   SponsorsRoute: SponsorsRoute,
+  StoriesRoute: StoriesRoute,
   TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport

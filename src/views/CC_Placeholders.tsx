@@ -8,10 +8,10 @@ const createPublicPlaceholder = (name: string, path: string) => {
       <div
         style={{
           padding: "40px",
-          fontFamily: "Lato, sans-serif",
-          background: "#F7F3ED",
+          fontFamily: "Inter, sans-serif",
+          background: "#F0F9FF",
           minHeight: "60vh",
-          color: "#3D3229",
+          color: "#0F172A",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -20,7 +20,8 @@ const createPublicPlaceholder = (name: string, path: string) => {
       >
         <h1
           style={{
-            fontFamily: "Playfair Display, serif",
+            fontFamily: "Inter, sans-serif",
+            fontWeight: 800,
             marginBottom: "1rem",
           }}
         >
@@ -37,17 +38,19 @@ const createPortalPlaceholder = (name: string, path: string) => {
     <div
       style={{
         padding: "40px",
-        fontFamily: "Lato, sans-serif",
-        background: "#F7F3ED",
+        fontFamily: "Inter, sans-serif",
+        background: "#F0F9FF",
         minHeight: "60vh",
-        color: "#3D3229",
+        color: "#0F172A",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <h1 style={{ fontFamily: "Playfair Display, serif", marginBottom: "1rem" }}>{name}</h1>
+      <h1 style={{ fontFamily: "Inter, sans-serif", fontWeight: 800, marginBottom: "1rem" }}>
+        {name}
+      </h1>
       <p style={{ fontFamily: "monospace", opacity: 0.7 }}>Route: {path}</p>
     </div>
   );
@@ -56,15 +59,17 @@ const createPortalPlaceholder = (name: string, path: string) => {
 // Legal Pages
 export const CC_Privacy = () => {
   useMeta({
-    title: "Privacy Policy | Country Close",
+    title: "Privacy Policy | neighborspace",
     description:
-      "Country Close privacy policy — how we collect, use, and protect your personal information. Your data is private, shared only within your community, and never sold.",
+      "neighborspace privacy policy — how we collect, use, and protect your personal information. Your data is private, shared only within your community, and never sold.",
   });
   return (
     <CC_Layout>
-      <div className="min-h-screen bg-[#F7F3ED]">
-        <div className="w-full h-[300px] bg-linear-to-br from-[#2D5016] to-[#3D6B20] flex items-center justify-center text-center px-4">
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-white">Privacy Policy</h1>
+      <div className="min-h-screen bg-cream">
+        <div className="w-full h-[300px] bg-linear-to-br from-primary to-primary-light flex items-center justify-center text-center px-4">
+          <h1 className="font-display text-4xl md:text-5xl font-extrabold text-white">
+            Privacy Policy
+          </h1>
         </div>
         <div className="max-w-4xl mx-auto px-6 py-16 font-body text-text">
           <p className="text-sm text-text-light mb-8">Last updated: January 2026</p>
@@ -74,9 +79,9 @@ export const CC_Privacy = () => {
                 1. Information We Collect
               </h2>
               <p className="leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                neighborspace collects the information you and your community provide — names,
+                addresses, contact details, and community records — to run the platform. We collect
+                only what is needed to deliver community management features.
               </p>
             </section>
             <section>
@@ -84,9 +89,9 @@ export const CC_Privacy = () => {
                 2. How We Use Your Information
               </h2>
               <p className="leading-relaxed">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum.
+                Your information is used to provide dues collection, maintenance requests,
+                violations tracking, voting, and resident communication. It is shared only within
+                your community and is never sold to third parties.
               </p>
             </section>
           </div>
@@ -98,15 +103,17 @@ export const CC_Privacy = () => {
 
 export const CC_Terms = () => {
   useMeta({
-    title: "Terms of Use | Country Close",
+    title: "Terms of Use | neighborspace",
     description:
-      "Country Close terms of use — community guidelines, resident responsibilities, and the rules that keep our private neighborhood platform useful and respectful.",
+      "neighborspace terms of use — community guidelines, resident responsibilities, and the rules that keep our community platform useful and respectful.",
   });
   return (
     <CC_Layout>
-      <div className="min-h-screen bg-[#F7F3ED]">
-        <div className="w-full h-[300px] bg-linear-to-br from-[#2D5016] to-[#3D6B20] flex items-center justify-center text-center px-4">
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-white">Terms of Use</h1>
+      <div className="min-h-screen bg-cream">
+        <div className="w-full h-[300px] bg-linear-to-br from-primary to-primary-light flex items-center justify-center text-center px-4">
+          <h1 className="font-display text-4xl md:text-5xl font-extrabold text-white">
+            Terms of Use
+          </h1>
         </div>
         <div className="max-w-4xl mx-auto px-6 py-16 font-body text-text">
           <p className="text-sm text-text-light mb-8">Last updated: January 2026</p>
@@ -116,9 +123,9 @@ export const CC_Terms = () => {
                 1. Acceptance of Terms
               </h2>
               <p className="leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                By accessing neighborspace, you agree to these terms and to your community's
+                guidelines. The platform is provided for the management and communication needs of
+                residents, boards, and managers.
               </p>
             </section>
             <section>
@@ -126,9 +133,9 @@ export const CC_Terms = () => {
                 2. User Responsibilities
               </h2>
               <p className="leading-relaxed">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum.
+                You agree to use neighborspace respectfully and lawfully, to keep your account
+                credentials secure, and to provide accurate information to your community and its
+                board.
               </p>
             </section>
           </div>
@@ -141,7 +148,7 @@ export const CC_Terms = () => {
 // Public Routes
 export const CC_Home = createPublicPlaceholder("Home", "/");
 export const CC_About = createPublicPlaceholder("About", "/about");
-export const CC_Sponsors = createPublicPlaceholder("Sponsors", "/sponsors");
+export const CC_Sponsors = createPublicPlaceholder("Partners", "/sponsors");
 export const CC_Development = createPublicPlaceholder("Development", "/development");
 
 // Portal Routes

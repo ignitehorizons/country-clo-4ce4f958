@@ -10,9 +10,9 @@ import { CC_DevelopmentTiers } from "@/components/CC_DevelopmentTiers";
 export default function CC_Development() {
   useScrollReveal();
   useMeta({
-    title: "Development | Country Close",
+    title: "Development | neighborspace",
     description:
-      "CountryClose powers community platforms for developers, builders, and new neighborhoods — from pre-sale through the handoff to an elected resident board. See what's available today and what's on the roadmap.",
+      "neighborspace powers community platforms for developers, builders, and new neighborhoods — from pre-sale through the handoff to an elected resident board. See what's available today and what's on the roadmap.",
   });
 
   const scrollToSection = (id: string) => {
@@ -22,7 +22,7 @@ export default function CC_Development() {
   return (
     <CC_Layout>
       {/* SECTION 1 — PAGE HERO */}
-      <section className="relative flex min-h-[500px] flex-col items-center justify-center overflow-hidden bg-linear-to-br from-[#2D5016] via-[#3D6B20] to-[#4A7C2F] text-center">
+      <section className="relative flex min-h-[500px] flex-col items-center justify-center overflow-hidden bg-linear-to-br from-primary via-primary-light to-primary text-center">
         {/* SVG leaf pattern overlay */}
         <div
           className="absolute inset-0 z-0 opacity-5"
@@ -32,21 +32,21 @@ export default function CC_Development() {
         />
 
         <div className="relative z-10 px-4 py-20">
-          <span className="font-accent text-[22px] text-[#E8A020]">For Developers & Builders</span>
-          <h1 className="mt-4 font-display text-[clamp(40px,6vw,80px)] font-black leading-[1.1] text-white">
+          <span className="font-accent text-[22px] text-accent font-semibold">For Developers & Builders</span>
+          <h1 className="mt-4 font-display text-[clamp(40px,6vw,80px)] font-extrabold leading-[1.1] text-white">
             Build Community
             <br />
             From Day One
           </h1>
           <p className="mx-auto mt-4 max-w-[680px] font-body text-[19px] font-light text-white/85">
-            CountryClose powers community platforms for developers, builders, and new neighborhoods
+            neighborspace powers community platforms for developers, builders, and new neighborhoods
             — from pre-sale to long after closing.
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <button
               onClick={() => scrollToSection("value-prop")}
-              className="rounded-full bg-[#E8A020] px-8 py-[14px] font-body text-[16px] font-bold text-[#4A3728] transition-colors hover:bg-[#D4911A]"
+              className="rounded-full bg-accent px-8 py-[14px] font-body text-[16px] font-bold text-white transition-colors hover:bg-accent-hover"
             >
               See How It Works
             </button>
@@ -68,7 +68,7 @@ export default function CC_Development() {
           >
             <path
               d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,152.41,114.6,227.14,81.3,258.9,67.14,290.5,62.16,321.39,56.44Z"
-              fill="#F7F3ED"
+              fill="#F0F9FF"
             ></path>
           </svg>
         </div>

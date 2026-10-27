@@ -14,14 +14,13 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CC_AuthProvider } from "@/context/CC_AuthContext";
 
-const SITE_TITLE = "Country Close — A quiet community of neighbors";
+const SITE_TITLE = "neighborspace — The operating system for connected communities";
 const SITE_DESCRIPTION =
-  "Country Close is a private neighborhood community platform for residents in Lutz, Florida — bulletin board, maintenance requests, calendar, directory, and safety alerts in one place.";
+  "neighborspace is the all-in-one community management platform for HOAs, condo associations, and neighborhoods — dues, maintenance, violations, voting, and resident communication in one place.";
 const OG_DESCRIPTION =
-  "Private neighborhood community platform for Country Close in Lutz, Florida. Bulletin board, maintenance, calendar, directory, and safety alerts — off Facebook, for residents only.";
+  "neighborspace is the all-in-one community management platform for HOAs, condo associations, and neighborhoods — dues, maintenance, violations, voting, and resident communication in one place.";
 const TWITTER_DESCRIPTION =
-  "Private neighborhood community platform for Country Close in Lutz, Florida.";
-// TODO(handover): re-upload to this project's media — currently served from the old project.
+  "The all-in-one community management platform for HOAs, condo associations, and neighborhoods.";
 const OG_IMAGE =
   "https://vibe.filesafe.space/1775231453582117442/assets/552daf8d-fd5e-42b6-83e7-be4464557220.png";
 import { reportVibeError } from "../lib/vibe-error-reporting";
@@ -109,7 +108,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Lato:wght@300;400;700&family=Satisfy&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
       },
       {
         rel: "stylesheet",

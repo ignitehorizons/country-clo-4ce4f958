@@ -1,13 +1,13 @@
 const communityConfig = {
-  name: "Country Close",
-  tagline: "A quiet community of neighbors",
-  location: "Lutz, Florida",
-  established: "1988",
-  totalHomes: 26,
-  portalUrl: "countryclose.com/portal",
-  adminEmail: "",
+  name: "neighborspace",
+  tagline: "The operating system for connected communities",
+  location: "neighborspace.app",
+  established: "2026",
+  totalHomes: 30,
+  portalUrl: "neighborspace.app/portal",
+  adminEmail: "hello@neighborspace.app",
   adminPhone: "",
-  address: "Lutz, Florida",
+  address: "neighborspace.app",
   managementCompany: "",
   builderName: "",
   amenities: [],
@@ -16,15 +16,15 @@ const communityConfig = {
   duesAmount: "",
   duesDueDate: "",
   boardMeetingSchedule: "",
-  logoUrl:
-    "https://vibe.filesafe.space/1775231453582117442/attachments/af76dd37-5259-4112-9afd-06ad80348466.png",
-  logoWhiteUrl:
-    "https://vibe.filesafe.space/1775231453582117442/attachments/21c06b2f-3ba0-45cb-9ca8-eb3e44b03d61.png",
+  // Brand mark is a wordmark; logoUrl intentionally empty so the nav/footer
+  // render the typographic "neighborspace" lockup instead of a stale image.
+  logoUrl: "",
+  logoWhiteUrl: "",
   brandColors: {
-    primary: "#2D5016",
-    accent: "#E8A020",
+    primary: "#0F172A",
+    accent: "#0284C7",
   },
-  poweredBy: "Community Connect Pro",
+  poweredBy: "neighborspace",
   coordinates: {
     lat: 28.1738094,
     lng: -82.4675796,

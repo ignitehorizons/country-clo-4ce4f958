@@ -90,17 +90,17 @@ export const CC_JoinForm = () => {
   };
 
   const inputClass =
-    "w-full p-[12px_16px] border border-[#DDD5C8] rounded-[8px] font-body text-[15px] text-[#3D3229] bg-white focus:border-[#E8A020] focus:outline-hidden focus:ring-[3px] focus:ring-[#E8A020]/15 transition-all";
+    "w-full p-[12px_16px] border border-border rounded-[8px] font-body text-[15px] text-text bg-white focus:border-accent focus:outline-hidden focus:ring-[3px] focus:ring-accent/15 transition-all";
   const labelClass =
-    "block font-body font-bold text-[13px] text-[#4A3728] tracking-[0.5px] uppercase mb-[6px]";
-  const requiredAsterisk = <span className="text-[#E8A020] ml-1">*</span>;
+    "block font-body font-bold text-[13px] text-bark tracking-[0.5px] uppercase mb-[6px]";
+  const requiredAsterisk = <span className="text-accent ml-1">*</span>;
 
   const isSubmitting = submitState.status === "submitting";
   const isSuccess = submitState.status === "success";
   const isError = submitState.status === "error";
 
   return (
-    <div className="bg-white rounded-[16px] p-6 md:p-[48px_40px] shadow-[0_4px_20px_rgba(45,80,22,0.08)] border border-[#DDD5C8]">
+    <div className="bg-white rounded-[16px] p-6 md:p-[48px_40px] shadow-[0_4px_20px_rgba(15,23,42,0.08)] border border-border">
       {isSuccess ? (
         <div className="text-center py-10 animate-in fade-in zoom-in duration-500">
           <div className="w-20 h-20 bg-[#2D5016]/10 text-[#2D5016] rounded-full flex items-center justify-center mx-auto mb-6">
