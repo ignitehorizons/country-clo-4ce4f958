@@ -3,49 +3,37 @@ import { CC_Layout } from "@/components/CC_Layout";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useMeta } from "@/hooks/useMeta";
 import { Link } from "@/lib/router-compat";
-import { Star, Quote, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-const STORIES = [
+const EARLY_ACCESS = [
   {
-    quote:
-      "We replaced three spreadsheets, a Facebook group, and a paper violations log with neighborspace. The board finally has one source of truth.",
-    name: "Brenda W.",
-    role: "Board President",
-    community: "48-unit condo association",
-    metric: "12 hrs saved per week",
+    badge: "Live now",
+    title: "The resident experience",
+    desc: "Bulletin board, community calendar, resident directory, lost & found, and a pet registry — the everyday pieces that keep a neighborhood connected.",
   },
   {
-    quote:
-      "Dues collection went from chasing checks to automatic. Our reserve fund reporting is board-ready in a few clicks instead of a weekend.",
-    name: "Tony T.",
-    role: "Treasurer",
-    community: "120-home HOA",
-    metric: "$48k collected in week one",
+    badge: "Live now",
+    title: "Dues & payments",
+    desc: "Collect dues online by ACH or card, with a clear per-household ledger and automated reminders. Secure checkout, no card data on your board's plate.",
   },
   {
-    quote:
-      "The violations module turned a contentious paper process into something transparent and fair. Residents actually trust it now.",
-    name: "Betty M.",
-    role: "Property Manager",
-    community: "Multi-community portfolio",
-    metric: "3x faster compliance review",
+    badge: "Onboarding now",
+    title: "Violations & voting",
+    desc: "We're rolling violations tracking and board elections out alongside our founding communities — shaping the workflow around how boards actually run.",
   },
   {
-    quote:
-      "As a developer, setting up the association before the first closing changed everything. Early dues, clean records, a smooth handoff.",
-    name: "Patrick B.",
-    role: "Developer",
-    community: "New construction, 64 lots",
-    metric: "Day-one community ready",
+    badge: "Roadmap",
+    title: "Built for builders",
+    desc: "Construction trackers, pre-sale pages, warranty portals, and a clean handoff to an elected resident board — in active development.",
   },
 ];
 
 function CC_Stories() {
   useScrollReveal();
   useMeta({
-    title: "Stories | neighborspace",
+    title: "Early Access | neighborspace",
     description:
-      "See how HOAs, condo associations, and property managers use neighborspace to run their communities — from dues collection to violations and board elections.",
+      "neighborspace is in early access. See what's live, what's onboarding now, and what's on the roadmap — shaped by the boards, managers, and builders using it.",
   });
 
   return (
@@ -54,46 +42,33 @@ function CC_Stories() {
       <section className="bg-primary px-6 py-[100px] text-center">
         <div className="mx-auto max-w-3xl reveal-on-scroll">
           <span className="font-body text-[13px] font-semibold uppercase tracking-[2px] text-accent">
-            Customer stories
+            Early access
           </span>
           <h1 className="mt-4 font-display text-[clamp(36px,6vw,64px)] font-extrabold text-white leading-tight">
-            Communities run better on neighborspace.
+            We're building neighborspace with our first communities.
           </h1>
           <p className="mt-5 font-body text-[20px] font-light text-white/80">
-            Boards, managers, and developers share how they replaced spreadsheets, group chats, and
-            paper notices with one platform.
+            Here's what's live, what's onboarding now, and what's on the roadmap — shaped by the
+            boards, managers, and builders using it.
           </p>
         </div>
       </section>
 
-      {/* STORIES GRID */}
+      {/* EARLY ACCESS GRID */}
       <section className="bg-cream px-6 md:px-10 py-[80px]">
         <div className="mx-auto max-w-6xl grid grid-cols-1 gap-6 md:grid-cols-2">
-          {STORIES.map((story, i) => (
+          {EARLY_ACCESS.map((card, i) => (
             <div
-              key={story.name}
+              key={card.title}
               className={`flex flex-col rounded-2xl border border-border bg-white p-8 reveal-on-scroll stagger-${(i % 2) + 1}`}
             >
-              <Quote className="h-8 w-8 text-accent/30" />
-              <blockquote className="mt-4 flex-1 font-display text-[18px] font-medium leading-relaxed text-bark">
-                {story.quote}
-              </blockquote>
-              <div className="mt-6 flex items-center gap-1">
-                {[0, 1, 2, 3, 4].map((s) => (
-                  <Star key={s} className="h-4 w-4 fill-accent text-accent" />
-                ))}
-              </div>
-              <div className="mt-4 flex items-center justify-between border-t border-border pt-4">
-                <div>
-                  <p className="font-body text-[15px] font-bold text-bark">{story.name}</p>
-                  <p className="font-body text-[13px] text-text-light">
-                    {story.role} · {story.community}
-                  </p>
-                </div>
-                <span className="rounded-full bg-accent/10 px-3 py-1 font-body text-[12px] font-semibold text-accent">
-                  {story.metric}
-                </span>
-              </div>
+              <span className="w-fit rounded-full bg-accent/10 px-3 py-1 font-body text-[12px] font-semibold text-accent">
+                {card.badge}
+              </span>
+              <h3 className="mt-4 font-display text-[20px] font-bold text-bark">{card.title}</h3>
+              <p className="mt-3 flex-1 font-body text-[15px] leading-relaxed text-text-light">
+                {card.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -106,13 +81,14 @@ function CC_Stories() {
       >
         <div className="mx-auto max-w-2xl reveal-on-scroll">
           <h2 className="font-display text-[clamp(28px,4vw,40px)] font-extrabold text-white">
-            Add your story next.
+            Join the founding cohort.
           </h2>
           <p className="mt-4 font-body text-[18px] text-white/90">
-            Book a demo and see what neighborspace can do for your community.
+            We onboard a small number of communities personally. Book a demo and let's see if yours
+            is a fit.
           </p>
           <Link
-            to="/contact"
+            to="/demo"
             className="mt-8 inline-flex items-center justify-center h-14 rounded-[100px] bg-white px-10 font-body text-[18px] font-bold text-accent transition-all hover:translate-y-[-3px] hover:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
           >
             Book a demo <ArrowRight className="ml-2 h-5 w-5" />
@@ -126,17 +102,17 @@ function CC_Stories() {
 export const Route = createFileRoute("/stories")({
   head: () => ({
     meta: [
-      { title: "Stories | neighborspace" },
+      { title: "Early Access | neighborspace" },
       {
         name: "description",
         content:
-          "See how HOAs, condo associations, and property managers use neighborspace to run their communities — from dues collection to violations and board elections.",
+          "neighborspace is in early access. See what's live, what's onboarding now, and what's on the roadmap — shaped by the boards, managers, and builders using it.",
       },
-      { property: "og:title", content: "Stories | neighborspace" },
+      { property: "og:title", content: "Early Access | neighborspace" },
       {
         property: "og:description",
         content:
-          "How HOAs, condo associations, and property managers use neighborspace to run their communities.",
+          "neighborspace is in early access — what's live, what's onboarding now, and what's on the roadmap.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

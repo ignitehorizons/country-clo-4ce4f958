@@ -55,8 +55,8 @@ export default function CC_About() {
                 scrolling through a Facebook group at 11 p.m.
               </p>
               <p>
-                From a 26-home neighborhood to a 500-unit association, neighborspace scales with
-                your community and keeps every record in one place.
+                From a 26-home neighborhood to a 500-unit association, neighborspace is built to
+                grow with your community and keep every record in one place.
               </p>
             </div>
           </div>
@@ -66,10 +66,10 @@ export default function CC_About() {
           >
             <div className="grid grid-cols-2 gap-6">
               {[
-                { number: "1,200+", label: "Communities" },
-                { number: "180k", label: "Residents" },
-                { number: "$24M", label: "Dues processed" },
-                { number: "99.9%", label: "Uptime" },
+                { number: "Beta", label: "Now in early access" },
+                { number: "1:1", label: "Hands-on onboarding" },
+                { number: "Open", label: "Public roadmap" },
+                { number: "$0", label: "For residents, always" },
               ].map((stat) => (
                 <div key={stat.label}>
                   <div className="font-display text-[36px] font-extrabold text-accent leading-none">

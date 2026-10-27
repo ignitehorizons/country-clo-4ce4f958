@@ -121,7 +121,7 @@ function CC_Pricing() {
               >
                 {tier.highlight && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 rounded-full bg-accent px-4 py-1 font-body text-[11px] font-bold uppercase tracking-[1px] text-white">
-                    <Sparkles className="h-3 w-3" /> Most popular
+                    <Sparkles className="h-3 w-3" /> Recommended
                   </span>
                 )}
                 <h3 className="font-display text-[20px] font-bold text-bark">{tier.name}</h3>
@@ -182,7 +182,7 @@ function CC_Pricing() {
               },
               {
                 q: "Are there setup fees?",
-                a: "No. Onboarding and data migration are included on every paid plan. Most communities go live in under two weeks.",
+                a: "No. We onboard founding communities personally — most go live in a couple of weeks.",
               },
               {
                 q: "Can I switch tiers later?",

@@ -15,7 +15,7 @@ import {
   Bell,
   CheckCircle2,
   ArrowRight,
-  Star,
+  Sparkles,
 } from "lucide-react";
 
 export default function CC_Home() {
@@ -253,23 +253,35 @@ export default function CC_Home() {
         </div>
       </section>
 
-      {/* SECTION 4 — STATS BAND */}
+      {/* SECTION 4 — EARLY ACCESS STATUS */}
       <section className="bg-primary px-6 py-[80px]">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+        <div className="mx-auto max-w-5xl text-center">
+          <span className="font-body text-[13px] font-semibold uppercase tracking-[2px] text-accent">
+            Now in early access
+          </span>
+          <h2 className="mt-4 font-display text-[clamp(26px,4vw,38px)] font-bold text-white max-w-3xl mx-auto leading-tight">
+            We're building neighborspace in the open — with founding communities, not for them.
+          </h2>
+          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
             {[
-              { number: "1,200+", label: "Communities" },
-              { number: "180k", label: "Residents" },
-              { number: "$24M", label: "Dues processed" },
-              { number: "99.9%", label: "Uptime" },
-            ].map((stat, i) => (
-              <div key={i} className={`text-center reveal-on-scroll stagger-${i + 1}`}>
-                <div className="font-display text-[clamp(36px,5vw,56px)] font-extrabold text-accent leading-none">
-                  {stat.number}
-                </div>
-                <div className="mt-2 font-body text-[13px] uppercase tracking-[2px] text-white/60">
-                  {stat.label}
-                </div>
+              {
+                label: "Hands-on onboarding",
+                desc: "We set up your community and walk your board through it personally.",
+              },
+              {
+                label: "Public roadmap",
+                desc: "What ships next is shaped by the boards and managers using it today.",
+              },
+              {
+                label: "Simple, honest pricing",
+                desc: "Free for residents, no setup fees, cancel anytime.",
+              },
+            ].map((item, i) => (
+              <div key={item.label} className={`reveal-on-scroll stagger-${i + 1}`}>
+                <div className="font-display text-[20px] font-bold text-accent">{item.label}</div>
+                <p className="mt-2 font-body text-[14px] leading-relaxed text-white/70">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -284,11 +296,11 @@ export default function CC_Home() {
               How it works
             </span>
             <h2 className="mt-3 font-display text-[clamp(28px,4vw,42px)] font-bold text-bark">
-              Live in under two weeks.
+              Onboarded personally, in days.
             </h2>
             <p className="mt-3 font-body text-[18px] text-text-light max-w-2xl mx-auto">
-              We migrate your records, set up your community, and train your board. You start the
-              first day with real data — not an empty app.
+              We set up your community, import your records, and walk your board through every
+              setting. You go live with real data — and us on call.
             </p>
           </div>
 
@@ -307,7 +319,7 @@ export default function CC_Home() {
               {
                 step: "03",
                 title: "Go live",
-                desc: "Invite residents and start collecting dues, requests, and votes from day one — with live training included.",
+                desc: "Invite residents and start collecting dues, requests, and votes — with us on call while you're getting started.",
               },
             ].map((item, i) => (
               <div
@@ -327,21 +339,34 @@ export default function CC_Home() {
         </div>
       </section>
 
-      {/* SECTION 6 — TESTIMONIAL */}
+      {/* SECTION 6 — EARLY ACCESS INVITE */}
       <section className="bg-cream px-6 md:px-10 py-[80px]">
         <div className="mx-auto max-w-3xl text-center reveal-on-scroll">
-          <div className="mb-6 flex items-center justify-center gap-1">
-            {[0, 1, 2, 3, 4].map((i) => (
-              <Star key={i} className="h-5 w-5 fill-accent text-accent" />
-            ))}
+          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-accent/10 text-accent">
+            <Sparkles className="h-7 w-7" />
           </div>
-          <blockquote className="font-display text-[clamp(24px,3vw,34px)] font-medium leading-snug text-bark">
-            “We replaced three spreadsheets, a Facebook group, and a paper violations log with
-            neighborspace. The board finally has one source of truth.”
-          </blockquote>
-          <p className="mt-6 font-body text-[15px] font-semibold text-text">
-            Brenda W. — Board President, 48-unit condo association
+          <h2 className="font-display text-[clamp(26px,3vw,36px)] font-bold text-bark">
+            Help us shape what community software should be.
+          </h2>
+          <p className="mt-4 font-body text-[18px] leading-relaxed text-text-light max-w-2xl mx-auto">
+            neighborspace is in early access. We onboard a small number of founding communities
+            personally, learn what actually matters, and ship it. If you want a say in how this
+            turns out, we’d love to work with you.
           </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              to="/demo"
+              className="inline-flex items-center justify-center h-14 rounded-[100px] bg-accent px-8 font-body text-base font-bold text-white transition-all hover:bg-accent-hover hover:translate-y-[-2px] hover:shadow-[0_8px_24px_rgba(2,132,199,0.4)]"
+            >
+              Book a demo
+            </Link>
+            <Link
+              to="/join"
+              className="inline-flex items-center justify-center h-14 rounded-[100px] border-2 border-bark/15 bg-transparent px-8 font-body text-base font-bold text-bark transition-all hover:border-accent hover:text-accent"
+            >
+              Join the waitlist
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -352,10 +377,11 @@ export default function CC_Home() {
       >
         <div className="mx-auto max-w-3xl reveal-on-scroll">
           <h2 className="font-display text-[clamp(32px,5vw,56px)] font-extrabold text-white leading-tight">
-            Your community is ready for this.
+            Be one of our first communities.
           </h2>
           <p className="mt-5 font-body text-[18px] text-white/90">
-            See neighborspace with your own community's data. Book a free 20-minute walkthrough.
+            We're onboarding a small founding cohort now. Book a free 20-minute walkthrough and see
+            neighborspace with your community's data.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link

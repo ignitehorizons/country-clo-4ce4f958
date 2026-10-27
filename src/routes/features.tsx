@@ -158,12 +158,12 @@ function CC_Features() {
       <section className="bg-white px-6 md:px-10 py-[80px]">
         <div className="mx-auto max-w-4xl text-center reveal-on-scroll">
           <h2 className="font-display text-[clamp(28px,4vw,42px)] font-bold text-bark">
-            Why communities switch to neighborspace
+            Why communities choose neighborspace
           </h2>
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
             {[
               "One source of truth — no more three spreadsheets and a group chat",
-              "Onboarding included — we migrate your data and train your board",
+              "Hands-on onboarding — we set up your community and walk your board through it",
               "Built for every role — residents, boards, and managers all get what they need",
               "Secure payments — PCI-compliant dues collection your board never touches",
             ].map((point) => (
@@ -192,7 +192,7 @@ function CC_Features() {
             Book a free 20-minute walkthrough and we'll show you exactly how it fits.
           </p>
           <Link
-            to="/contact"
+            to="/demo"
             className="mt-8 inline-flex items-center justify-center h-14 rounded-[100px] bg-white px-10 font-body text-[18px] font-bold text-accent transition-all hover:translate-y-[-3px] hover:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
           >
             Book a demo <ArrowRight className="ml-2 h-5 w-5" />
