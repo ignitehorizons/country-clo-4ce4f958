@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 const HERO_BANNER =
-  "https://vibe.filesafe.space/1791050574073732793/assets/51f987b9-df93-4a30-ba5f-92b6a16b894c.png";
+  "https://assets.cdn.filesafe.space/fTWpkc2JrzTyLdcaKxJD/media/6ae9240bce53a65ab21e1457.webp";
 
 type Status = "live" | "dev" | "soon";
 
