@@ -13,9 +13,9 @@ const labelClass = "block font-body font-semibold text-[13px] text-bark tracking
 function CC_Contact() {
   useScrollReveal();
   useMeta({
-    title: "Contact | neighborspace",
+    title: "Contact | NeighborSpace",
     description:
-      "Book a free demo or talk to the neighborspace team about your community. We'll map the right plan to your HOA, condo association, or neighborhood.",
+      "Book a free demo or talk to the NeighborSpace team about your community. We'll map the right setup to your HOA, condo association, or neighborhood.",
   });
 
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -64,11 +64,11 @@ function CC_Contact() {
             Contact
           </span>
           <h1 className="mt-4 font-display text-[clamp(36px,6vw,64px)] font-extrabold text-white leading-tight">
-            Let's see if neighborspace fits.
+            Let's see if NeighborSpace fits.
           </h1>
           <p className="mt-5 font-body text-[20px] font-light text-white/80">
             Book a free 20-minute demo or send us a note. We'll walk you through the platform with
-            your community's data and map the right plan.
+            your community's data and map the right setup.
           </p>
         </div>
       </section>
@@ -97,7 +97,7 @@ function CC_Contact() {
                   Request a demo
                 </h2>
                 <p className="font-body text-[14px] text-text-light mb-6">
-                  Tell us about your community and we'll show you neighborspace in action.
+                  Tell us about your community and we'll show you NeighborSpace in action.
                 </p>
 
                 {status === "error" && error && (
@@ -216,8 +216,8 @@ function CC_Contact() {
                 {[
                   "We review your community's needs",
                   "A 20-minute walkthrough on your schedule",
-                  "We map the right plan and price",
-                  "Onboarding and data migration included",
+                  "We map the right setup to your community",
+                  "Hands-on onboarding included",
                 ].map((step) => (
                   <li key={step} className="flex items-start gap-3">
                     <Check className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
@@ -245,16 +245,16 @@ function CC_Contact() {
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact | neighborspace" },
+      { title: "Contact | NeighborSpace" },
       {
         name: "description",
         content:
-          "Book a free demo or talk to the neighborspace team about your community. We'll map the right plan to your HOA, condo association, or neighborhood.",
+          "Book a free demo or talk to the NeighborSpace team about your community. We'll map the right setup to your HOA, condo association, or neighborhood.",
       },
-      { property: "og:title", content: "Contact | neighborspace" },
+      { property: "og:title", content: "Contact | NeighborSpace" },
       {
         property: "og:description",
-        content: "Book a free demo or talk to the neighborspace team about your community.",
+        content: "Book a free demo or talk to the NeighborSpace team about your community.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

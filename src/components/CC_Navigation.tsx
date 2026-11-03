@@ -68,8 +68,7 @@ export const CC_Navigation = () => {
 
   const navLinks = [
     { name: "Features", path: "/features" },
-    { name: "Pricing", path: "/pricing" },
-    { name: "Stories", path: "/stories" },
+    { name: "Roadmap", path: "/roadmap" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
@@ -90,7 +89,7 @@ export const CC_Navigation = () => {
               !scrolled ? "text-white" : "text-bark",
             )}
           >
-            neighbor<span className="text-accent">space</span>
+            Neighbor<span className="text-accent">Space</span>
           </Link>
         </div>
 

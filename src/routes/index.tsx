@@ -5,18 +5,18 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "neighborspace — The operating system for connected communities",
+        title: "NeighborSpace — Where Communities Connect",
       },
       {
         name: "description",
         content:
-          "neighborspace is the all-in-one community management platform for HOAs, condo associations, and neighborhoods — dues, maintenance, violations, voting, and resident communication in one place.",
+          "NeighborSpace is a private, branded home for your community — announcements, events, a verified neighbor directory, and local resources in one place for your HOA, condo association, or neighborhood.",
       },
-      { property: "og:title", content: "neighborspace" },
+      { property: "og:title", content: "NeighborSpace" },
       {
         property: "og:description",
         content:
-          "The all-in-one community management platform for HOAs, condo associations, and neighborhoods.",
+          "A private, branded home for your community — announcements, events, a verified neighbor directory, and local resources in one place.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

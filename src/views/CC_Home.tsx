@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { CC_Layout } from "@/components/CC_Layout";
 import { Link } from "@/lib/router-compat";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -16,128 +15,168 @@ import {
   CheckCircle2,
   ArrowRight,
   Sparkles,
+  ShieldCheck,
+  Landmark,
 } from "lucide-react";
+
+const HERO_BANNER =
+  "https://vibe.filesafe.space/1791050574073732793/assets/232e9ddb-86fb-428e-8e33-cf7d7311b7f9.png";
+
+type Status = "live" | "dev" | "soon";
+
+const STATUS_LABEL: Record<Status, string> = {
+  live: "Live",
+  dev: "In development",
+  soon: "Coming soon",
+};
+
+const FEATURES: {
+  icon: typeof ClipboardList;
+  title: string;
+  desc: string;
+  status: Status;
+}[] = [
+  // Live
+  {
+    icon: ClipboardList,
+    title: "Bulletin board",
+    desc: "Announcements without the drama. Moderated, organized, and actually useful.",
+    status: "live",
+  },
+  {
+    icon: Users,
+    title: "Resident directory",
+    desc: "A private, verified directory so neighbors can find the skills and contacts they need.",
+    status: "live",
+  },
+  {
+    icon: CalendarIcon,
+    title: "Calendar & events",
+    desc: "Meetings, amenities, and community events in one shared calendar with reminders.",
+    status: "live",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Resident verification",
+    desc: "Every member is verified by address and approved by your board — no strangers, no spam.",
+    status: "live",
+  },
+  {
+    icon: Landmark,
+    title: "Resource & officials directory",
+    desc: "Local services, utilities, and elected officials in one place for every resident.",
+    status: "live",
+  },
+  // In development
+  {
+    icon: ShieldAlert,
+    title: "Violations & compliance",
+    desc: "Document issues, notify homeowners, and track cure deadlines — being shaped with our founding communities.",
+    status: "dev",
+  },
+  // Coming soon
+  {
+    icon: CreditCard,
+    title: "Dues & payments",
+    desc: "Online dues collection is coming soon — a clear ledger for every household.",
+    status: "soon",
+  },
+  {
+    icon: Wrench,
+    title: "Maintenance requests",
+    desc: "Residents will submit requests with photos and track each one through completion.",
+    status: "soon",
+  },
+  {
+    icon: Vote,
+    title: "Voting & elections",
+    desc: "Board elections and surveys with verifiable, transparent results are on the way.",
+    status: "soon",
+  },
+  {
+    icon: Building2,
+    title: "Board hub",
+    desc: "Documents, meeting notes, and governance in one place — coming soon.",
+    status: "soon",
+  },
+  {
+    icon: Bell,
+    title: "Safety alerts",
+    desc: "Emergency broadcasts that reach every resident instantly — coming soon.",
+    status: "soon",
+  },
+];
 
 export default function CC_Home() {
   useScrollReveal();
   useMeta({
-    title: "neighborspace — The operating system for connected communities",
+    title: "NeighborSpace — Where Communities Connect",
     description:
-      "neighborspace is the all-in-one community management platform for HOAs, condo associations, and neighborhoods — dues, maintenance, violations, voting, and resident communication in one place.",
+      "NeighborSpace is a private, branded home for your community — announcements, events, a verified neighbor directory, and local resources in one place for your HOA, condo association, or neighborhood.",
   });
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <CC_Layout>
-      {/* SECTION 1 — HERO (dashboard-style) */}
-      <section className="relative flex min-h-[92vh] w-full items-center justify-center overflow-hidden bg-primary">
-        <div
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{
-            background: "linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #0F172A 100%)",
-            transform: `translateY(${Math.min(scrollY * 0.4, 30)}px)`,
-          }}
-        />
-        {/* Glow accents */}
-        <div
-          className="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] rounded-full opacity-20 pointer-events-none"
-          style={{ background: "radial-gradient(circle, #0284C7 0%, transparent 70%)" }}
-        />
-        <div
-          className="absolute -bottom-1/4 -left-1/4 w-[500px] h-[500px] rounded-full opacity-15 pointer-events-none"
-          style={{ background: "radial-gradient(circle, #06B6D4 0%, transparent 70%)" }}
-        />
+      {/* SECTION 1 — HERO (banner + headline block) */}
+      <section className="relative w-full">
+        <div className="relative w-full">
+          <img
+            src={HERO_BANNER}
+            alt="A park bench under a shade tree in a quiet neighborhood at golden hour"
+            className="w-full h-[58vh] md:h-[70vh] object-cover"
+          />
+          {/* Gradient for nav legibility (top) and transition into navy (bottom) */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(15,23,42,0.55) 0%, rgba(15,23,42,0.10) 38%, rgba(15,23,42,0.92) 100%)",
+            }}
+          />
+          <div className="absolute inset-0 flex items-center justify-center px-6">
+            <h1
+              className="font-display font-extrabold text-white text-center leading-[1.05] tracking-tight animate-text-reveal"
+              style={{ fontSize: "clamp(34px, 6vw, 72px)" }}
+            >
+              Where Communities Connect.
+            </h1>
+          </div>
+        </div>
 
-        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-24 md:grid-cols-2">
-          {/* Left — copy */}
-          <div className="text-center md:text-left">
+        {/* Centered text block on navy */}
+        <div className="bg-primary px-6 py-[64px] md:py-[88px]">
+          <div className="mx-auto max-w-3xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 font-body text-[13px] font-semibold text-accent">
               <span className="h-2 w-2 rounded-full bg-accent" />
               Now in early access
             </span>
-            <h1
-              className="mt-6 font-display font-extrabold leading-[1.05] tracking-tight text-white animate-text-reveal pb-2"
-              style={{ fontSize: "clamp(40px, 6vw, 72px)" }}
+            <h2
+              className="mt-6 font-display font-extrabold leading-[1.1] tracking-tight text-white"
+              style={{ fontSize: "clamp(30px, 5vw, 52px)" }}
             >
-              The operating system for <span className="text-accent">connected communities</span>
-            </h1>
-            <p className="mt-6 font-body text-[20px] font-light leading-relaxed text-white/80 max-w-xl mx-auto md:mx-0">
-              Dues, maintenance, violations, voting, and resident communication — one platform for
-              HOAs, condo associations, and neighborhoods. Built for boards, managers, and the
-              people who live there.
+              A private, branded home for your community.
+            </h2>
+            <p className="mt-6 font-body text-[18px] md:text-[20px] font-light leading-relaxed text-white/80 max-w-2xl mx-auto">
+              Announcements, events, a verified neighbor directory, and local resources — all in one
+              place for your HOA, condo association, or neighborhood.
             </p>
-            <div className="mt-10 flex flex-col w-full sm:w-auto items-center justify-center gap-4 sm:flex-row md:justify-start">
-              <Link
-                to="/pricing"
-                className="w-full sm:w-auto flex items-center justify-center h-14 rounded-[100px] bg-accent px-8 text-base font-bold text-white transition-all hover:bg-accent-hover hover:translate-y-[-2px] hover:shadow-[0_8px_24px_rgba(2,132,199,0.4)] active:translate-y-0 active:scale-[0.98]"
-              >
-                See pricing
-              </Link>
+            <div className="mt-10 flex flex-col w-full sm:w-auto items-center justify-center gap-4 sm:flex-row">
               <Link
                 to="/demo"
-                className="w-full sm:w-auto flex items-center justify-center h-14 rounded-[100px] border-2 border-white/30 bg-transparent px-8 text-base font-semibold text-white transition-all hover:bg-white/10 hover:text-white"
+                className="w-full sm:w-auto flex items-center justify-center h-14 rounded-[100px] bg-accent px-8 text-base font-bold text-white transition-all hover:bg-accent-hover hover:translate-y-[-2px] hover:shadow-[0_8px_24px_rgba(2,132,199,0.4)] active:translate-y-0 active:scale-[0.98]"
               >
                 Book a demo
               </Link>
+              <Link
+                to="/portal"
+                className="w-full sm:w-auto flex items-center justify-center h-14 rounded-[100px] border-2 border-white/30 bg-transparent px-8 text-base font-semibold text-white transition-all hover:bg-white/10 hover:text-white"
+              >
+                Member Portal
+              </Link>
             </div>
-            <div className="mt-8 flex items-center justify-center md:justify-start gap-2 font-body text-[13px] text-white/60">
-              <CheckCircle2 className="h-4 w-4 text-accent" />
-              Free for residents · No setup fees · Cancel anytime
-            </div>
-          </div>
-
-          {/* Right — dashboard mockup */}
-          <div className="reveal-on-scroll hidden md:block">
-            <div
-              className="rounded-2xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur"
-              style={{ boxShadow: "0 30px 60px -20px rgba(0,0,0,0.6)" }}
-            >
-              <div className="rounded-xl bg-cream p-6">
-                <div className="mb-4 flex items-center justify-between">
-                  <span className="font-display text-[15px] font-bold text-bark">
-                    Community overview
-                  </span>
-                  <span className="rounded-full bg-accent/10 px-3 py-1 font-body text-[11px] font-semibold text-accent">
-                    Live
-                  </span>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { label: "Dues collected", value: "$48,200", icon: CreditCard },
-                    { label: "Open requests", value: "12", icon: Wrench },
-                    { label: "Violations", value: "3", icon: ShieldAlert },
-                    { label: "Active votes", value: "2", icon: Vote },
-                  ].map((stat) => (
-                    <div key={stat.label} className="rounded-lg border border-border bg-white p-4">
-                      <stat.icon className="h-5 w-5 text-accent" />
-                      <div className="mt-3 font-display text-[22px] font-bold text-bark">
-                        {stat.value}
-                      </div>
-                      <div className="font-body text-[12px] text-text-light">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 rounded-lg border border-border bg-white p-4">
-                  <div className="flex items-center justify-between">
-                    <span className="font-body text-[13px] font-semibold text-bark">
-                      Spring cookout announcement
-                    </span>
-                    <span className="font-body text-[11px] text-text-light">Apr 12</span>
-                  </div>
-                  <div className="mt-2 h-2 w-full rounded-full bg-light-gray">
-                    <div className="h-2 w-3/4 rounded-full bg-accent" />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <p className="mt-8 font-body text-[13px] text-white/60">
+              Built by a 30-year public safety leader · Hands-on onboarding · Your data is never sold
+            </p>
           </div>
         </div>
       </section>
@@ -165,89 +204,35 @@ export default function CC_Home() {
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-16 reveal-on-scroll">
             <h2 className="font-display text-[clamp(28px,4vw,42px)] font-bold text-bark">
-              Everything your community needs, in one place.
+              Everything your community needs to stay connected.
             </h2>
-            <p className="mt-3 font-body text-[18px] text-text-light">
-              Stop juggling spreadsheets, group chats, and paper notices. neighborspace brings it
-              all together.
+            <p className="mt-3 font-body text-[18px] text-text-light max-w-2xl mx-auto">
+              Start with the essentials today. More tools are on the way — shaped by the communities
+              using NeighborSpace.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                icon: CreditCard,
-                title: "Dues & payments",
-                desc: "Collect dues online by ACH or card. Automated reminders, late fees, and a clear ledger for every household.",
-                path: "/features",
-              },
-              {
-                icon: Wrench,
-                title: "Maintenance requests",
-                desc: "Residents submit requests with photos. Assign vendors and track each one through completion.",
-                path: "/features",
-              },
-              {
-                icon: ShieldAlert,
-                title: "Violations & compliance",
-                desc: "Document violations against the right rule, track architectural reviews, and keep a full record.",
-                path: "/features",
-              },
-              {
-                icon: Vote,
-                title: "Voting & elections",
-                desc: "Run board elections and surveys with verifiable, transparent results — no more paper ballots.",
-                path: "/features",
-              },
-              {
-                icon: CalendarIcon,
-                title: "Calendar & events",
-                desc: "Meetings, amenities, and community events in one shared calendar with reminders.",
-                path: "/features",
-              },
-              {
-                icon: Users,
-                title: "Resident directory",
-                desc: "A private, verified directory so neighbors can find the skills and contacts they need.",
-                path: "/features",
-              },
-              {
-                icon: Bell,
-                title: "Safety alerts",
-                desc: "Emergency broadcasts that reach every resident instantly — by app, email, or text.",
-                path: "/features",
-              },
-              {
-                icon: ClipboardList,
-                title: "Bulletin board",
-                desc: "Community announcements without the drama. Moderated, organized, and actually useful.",
-                path: "/features",
-              },
-              {
-                icon: Building2,
-                title: "Board hub",
-                desc: "Documents, meeting notes, and governance in one place the whole board can actually use.",
-                path: "/features",
-              },
-            ].map((card, i) => (
-              <Link
-                key={i}
-                to={card.path}
-                className={`group flex flex-col rounded-2xl border border-border bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:shadow-lg reveal-on-scroll stagger-${(i % 3) + 1}`}
+            {FEATURES.map((card, i) => (
+              <div
+                key={card.title}
+                className={`group relative flex flex-col rounded-2xl border border-border bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:shadow-lg reveal-on-scroll stagger-${(i % 3) + 1}`}
               >
+                <span
+                  className={`status-badge status-${card.status} absolute top-4 right-4`}
+                >
+                  {STATUS_LABEL[card.status]}
+                </span>
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
                   <card.icon className="h-6 w-6" />
                 </div>
-                <h3 className="font-display text-[18px] font-bold text-bark group-hover:text-accent transition-colors">
+                <h3 className="font-display text-[18px] font-bold text-bark group-hover:text-accent transition-colors pr-16">
                   {card.title}
                 </h3>
                 <p className="mt-2 font-body text-[14px] leading-relaxed text-text-light">
                   {card.desc}
                 </p>
-                <span className="mt-4 inline-flex items-center gap-1 font-body text-[13px] font-semibold text-accent">
-                  Learn more <ArrowRight className="h-3.5 w-3.5" />
-                </span>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -260,7 +245,7 @@ export default function CC_Home() {
             Now in early access
           </span>
           <h2 className="mt-4 font-display text-[clamp(26px,4vw,38px)] font-bold text-white max-w-3xl mx-auto leading-tight">
-            We're building neighborspace in the open — with founding communities, not for them.
+            We're building NeighborSpace in the open — with founding communities, not for them.
           </h2>
           <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
             {[
@@ -273,8 +258,8 @@ export default function CC_Home() {
                 desc: "What ships next is shaped by the boards and managers using it today.",
               },
               {
-                label: "Simple, honest pricing",
-                desc: "Free for residents, no setup fees, cancel anytime.",
+                label: "Your data stays yours",
+                desc: "We never sell or share resident information without express permission.",
               },
             ].map((item, i) => (
               <div key={item.label} className={`reveal-on-scroll stagger-${i + 1}`}>
@@ -299,8 +284,8 @@ export default function CC_Home() {
               Onboarded personally, in days.
             </h2>
             <p className="mt-3 font-body text-[18px] text-text-light max-w-2xl mx-auto">
-              We set up your community, import your records, and walk your board through every
-              setting. You go live with real data — and us on call.
+              We set up your community, load your documents and events, and configure resident
+              verification. You go live — with us on call.
             </p>
           </div>
 
@@ -308,18 +293,18 @@ export default function CC_Home() {
             {[
               {
                 step: "01",
-                title: "Import your data",
-                desc: "Our team migrates owner and resident records, financial data, and documents from your current system.",
+                title: "Tell us about your community",
+                desc: "Book a short call. We learn how your board, manager, or neighborhood communicates today.",
               },
               {
                 step: "02",
-                title: "Configure & review",
-                desc: "Set up dues, roles, and rules. We walk your board through every setting before you go live.",
+                title: "We set it up",
+                desc: "We brand your site, load your documents and events, and configure resident verification.",
               },
               {
                 step: "03",
-                title: "Go live",
-                desc: "Invite residents and start collecting dues, requests, and votes — with us on call while you're getting started.",
+                title: "Invite your neighbors",
+                desc: "Residents sign up, get verified, and start connecting — with us on call while you get started.",
               },
             ].map((item, i) => (
               <div
@@ -349,7 +334,7 @@ export default function CC_Home() {
             Help us shape what community software should be.
           </h2>
           <p className="mt-4 font-body text-[18px] leading-relaxed text-text-light max-w-2xl mx-auto">
-            neighborspace is in early access. We onboard a small number of founding communities
+            NeighborSpace is in early access. We onboard a small number of founding communities
             personally, learn what actually matters, and ship it. If you want a say in how this
             turns out, we’d love to work with you.
           </p>
@@ -381,7 +366,7 @@ export default function CC_Home() {
           </h2>
           <p className="mt-5 font-body text-[18px] text-white/90">
             We're onboarding a small founding cohort now. Book a free 20-minute walkthrough and see
-            neighborspace with your community's data.
+            NeighborSpace with your community's data.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
@@ -391,10 +376,10 @@ export default function CC_Home() {
               Book a demo
             </Link>
             <Link
-              to="/pricing"
+              to="/features"
               className="inline-flex items-center justify-center h-14 rounded-[100px] border-2 border-white/60 bg-transparent px-10 font-body text-[18px] font-bold text-white transition-all hover:bg-white/10"
             >
-              View pricing
+              Explore features <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>
         </div>

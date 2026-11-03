@@ -7,9 +7,9 @@ import { Link } from "@/lib/router-compat";
 const CC_Sponsors = () => {
   useScrollReveal();
   useMeta({
-    title: "Partners | neighborspace",
+    title: "Partners | NeighborSpace",
     description:
-      "Become a neighborspace community partner and reach verified local households. A trusted, hyper-local listing — no ad algorithms, just neighbor recommendations.",
+      "Become a NeighborSpace community partner and reach verified local households. A trusted, hyper-local listing — no ad algorithms, just neighbor recommendations.",
   });
 
   return (
@@ -22,7 +22,7 @@ const CC_Sponsors = () => {
             Community Partners
           </h1>
           <p className="mt-[12px] font-body text-[18px] font-light text-white/80">
-            Local businesses that support neighborspace communities
+            Local businesses that support NeighborSpace communities
           </p>
         </div>
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
@@ -51,7 +51,7 @@ const CC_Sponsors = () => {
             Reach verified local households
           </h2>
           <p className="mx-auto mt-4 max-w-xl font-body text-[18px] leading-relaxed text-text-light">
-            neighborspace puts your business in front of communities who already trust their
+            NeighborSpace puts your business in front of communities who already trust their
             neighbors' recommendations. No fake listings, no competing ads — just real local
             businesses, joining as communities grow.
           </p>
@@ -100,48 +100,21 @@ const CC_Sponsors = () => {
             </p>
           </div>
 
-          {/* Right Column */}
+          {/* Right Column — CTA card */}
           <div className="flex flex-1 flex-col gap-4">
-            {[
-              {
-                name: "Basic Listing",
-                desc: "Name, description & contact",
-                price: "$49",
-              },
-              {
-                name: "Featured Listing",
-                desc: "Priority placement + logo",
-                price: "$99",
-              },
-              {
-                name: "Premium Partner",
-                desc: "Top placement + homepage strip",
-                price: "$199",
-              },
-            ].map((tier, i) => (
-              <div
-                key={tier.name}
-                className={`flex items-center justify-between rounded-xl border border-white/15 bg-white/5 p-5 md:px-6 reveal-on-scroll stagger-${i + 1}`}
+            <div className="rounded-xl border border-white/15 bg-white/5 p-6 md:px-8 reveal-on-scroll stagger-1">
+              <h4 className="font-body text-[18px] font-bold text-white">Become a community partner</h4>
+              <p className="mt-2 font-body text-[14px] text-white/70">
+                Partner listings are added as communities grow. Tell us about your business and the
+                communities you'd like to reach, and we'll be in touch.
+              </p>
+              <Link
+                to="/contact"
+                className="mt-6 inline-block w-fit rounded-full bg-accent px-9 py-3.5 font-body text-[16px] font-bold text-white transition-colors hover:bg-accent-hover"
               >
-                <div>
-                  <h4 className="font-body text-[16px] font-bold text-white">{tier.name}</h4>
-                  <p className="mt-1 font-body text-[13px] text-white/70">{tier.desc}</p>
-                </div>
-                <div className="text-right">
-                  <span className="font-display text-[24px] font-bold text-accent">
-                    {tier.price}
-                  </span>
-                  <span className="font-body text-[13px] text-white/70">/month</span>
-                </div>
-              </div>
-            ))}
-
-            <Link
-              to="/contact"
-              className="mt-6 inline-block w-fit rounded-full bg-accent px-9 py-3.5 font-body text-[16px] font-bold text-white transition-colors hover:bg-accent-hover"
-            >
-              Apply to Become a Partner &rarr;
-            </Link>
+                Apply to Become a Partner &rarr;
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -150,7 +123,7 @@ const CC_Sponsors = () => {
       <section className="bg-cream px-10 py-10 text-center">
         <div className="mx-auto max-w-5xl">
           <h3 className="mb-8 font-body text-[13px] font-bold uppercase tracking-[3px] text-text-light">
-            Why partner with neighborspace?
+            Why partner with NeighborSpace?
           </h3>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {[

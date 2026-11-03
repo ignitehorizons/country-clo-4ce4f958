@@ -9,7 +9,7 @@ export const CC_Footer = () => {
           {/* Column 1 */}
           <div className="flex flex-col items-start gap-4">
             <span className="font-display text-[24px] font-extrabold tracking-tight text-white">
-              neighbor<span className="text-accent">space</span>
+              Neighbor<span className="text-accent">Space</span>
             </span>
             <p className="font-body text-sm text-cream/80 m-0">{communityConfig.tagline}</p>
             <p className="font-body text-sm text-cream/60 mt-4">
@@ -36,16 +36,10 @@ export const CC_Footer = () => {
                 Features
               </Link>
               <Link
-                to="/pricing"
+                to="/roadmap"
                 className="font-body text-sm text-white hover:text-accent transition-colors"
               >
-                Pricing
-              </Link>
-              <Link
-                to="/stories"
-                className="font-body text-sm text-white hover:text-accent transition-colors"
-              >
-                Stories
+                Roadmap
               </Link>
               <Link
                 to="/contact"

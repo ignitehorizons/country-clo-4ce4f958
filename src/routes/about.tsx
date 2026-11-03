@@ -4,13 +4,13 @@ import CC_About from "@/views/CC_About";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About | neighborspace" },
+      { title: "About | NeighborSpace" },
       {
         name: "description",
         content:
-          "neighborspace is the all-in-one community management platform for HOAs, condo associations, and neighborhoods — built to replace spreadsheets, group chats, and paper notices with one source of truth.",
+          "NeighborSpace is the all-in-one community management platform for HOAs, condo associations, and neighborhoods — built to replace spreadsheets, group chats, and paper notices with one source of truth.",
       },
-      { property: "og:title", content: "About | neighborspace" },
+      { property: "og:title", content: "About | NeighborSpace" },
       {
         property: "og:description",
         content:

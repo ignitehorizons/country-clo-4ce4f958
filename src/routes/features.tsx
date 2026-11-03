@@ -5,57 +5,37 @@ import { useMeta } from "@/hooks/useMeta";
 import { Link } from "@/lib/router-compat";
 import {
   CreditCard,
+  FileText,
   Wrench,
   ShieldAlert,
-  Vote,
-  Calendar,
-  Users,
   Bell,
   ClipboardList,
+  Calendar,
+  Users,
+  Vote,
   Building2,
-  FileText,
+  ShieldCheck,
+  Landmark,
   CheckCircle2,
   ArrowRight,
 } from "lucide-react";
 
-const FEATURE_GROUPS = [
-  {
-    title: "Financial",
-    desc: "Collect and track every dollar with fund accounting built for associations.",
-    items: [
-      {
-        icon: CreditCard,
-        title: "Online dues & payments",
-        desc: "Collect dues by ACH or card. Automated reminders, late fees, and a clear per-household ledger.",
-      },
-      {
-        icon: FileText,
-        title: "Accounting & reporting",
-        desc: "Keep operating and reserve funds separate, reconcile bank accounts, and share board-ready statements.",
-      },
-    ],
-  },
-  {
-    title: "Operations",
-    desc: "Turn resident requests and rule enforcement into a clean, auditable record.",
-    items: [
-      {
-        icon: Wrench,
-        title: "Maintenance requests",
-        desc: "Residents submit requests with photos. Assign vendors and track each one through completion.",
-      },
-      {
-        icon: ShieldAlert,
-        title: "Violations & compliance",
-        desc: "Document violations against the right rule, manage architectural reviews, and keep a full record.",
-      },
-      {
-        icon: Bell,
-        title: "Safety alerts",
-        desc: "Emergency broadcasts that reach every resident instantly — by app, email, or text.",
-      },
-    ],
-  },
+type Status = "live" | "dev" | "soon";
+
+const STATUS_LABEL: Record<Status, string> = {
+  live: "Live",
+  dev: "In development",
+  soon: "Coming soon",
+};
+
+type FeatureItem = {
+  icon: typeof CreditCard;
+  title: string;
+  desc: string;
+  status: Status;
+};
+
+const FEATURE_GROUPS: { title: string; desc: string; items: FeatureItem[] }[] = [
   {
     title: "Community",
     desc: "Keep residents informed, engaged, and connected to their neighbors.",
@@ -64,16 +44,73 @@ const FEATURE_GROUPS = [
         icon: ClipboardList,
         title: "Bulletin board",
         desc: "Announcements without the drama. Moderated, organized, and actually useful.",
+        status: "live",
       },
       {
         icon: Calendar,
         title: "Calendar & amenities",
         desc: "Meetings, amenity bookings, and community events in one shared calendar with reminders.",
+        status: "live",
       },
       {
         icon: Users,
         title: "Resident directory",
         desc: "A private, verified directory so neighbors can find the skills and contacts they need.",
+        status: "live",
+      },
+      {
+        icon: ShieldCheck,
+        title: "Resident verification",
+        desc: "Every member is verified by address and approved by your board — no strangers, no spam.",
+        status: "live",
+      },
+      {
+        icon: Landmark,
+        title: "Resource & officials directory",
+        desc: "Local services, utilities, and elected officials in one place for every resident.",
+        status: "live",
+      },
+    ],
+  },
+  {
+    title: "Operations",
+    desc: "Turn resident requests and rule enforcement into a clean, auditable record.",
+    items: [
+      {
+        icon: ShieldAlert,
+        title: "Violations & compliance",
+        desc: "Document issues, notify homeowners, and track cure deadlines — being shaped with our founding communities.",
+        status: "dev",
+      },
+      {
+        icon: Wrench,
+        title: "Maintenance requests",
+        desc: "Residents will submit requests with photos and track each one through completion.",
+        status: "soon",
+      },
+      {
+        icon: Bell,
+        title: "Safety alerts",
+        desc: "Emergency broadcasts that reach every resident instantly — coming soon.",
+        status: "soon",
+      },
+    ],
+  },
+  {
+    title: "Financial",
+    desc: "Tools to collect and track community funds — on the roadmap.",
+    items: [
+      {
+        icon: CreditCard,
+        title: "Online dues & payments",
+        desc: "Online dues collection is coming soon — a clear per-household ledger.",
+        status: "soon",
+      },
+      {
+        icon: FileText,
+        title: "Accounting & reporting",
+        desc: "Board-ready statements and fund tracking are on the roadmap.",
+        status: "soon",
       },
     ],
   },
@@ -84,12 +121,14 @@ const FEATURE_GROUPS = [
       {
         icon: Vote,
         title: "Voting & elections",
-        desc: "Run board elections and surveys with verifiable, transparent results — no more paper ballots.",
+        desc: "Board elections and surveys with verifiable, transparent results are on the way.",
+        status: "soon",
       },
       {
         icon: Building2,
         title: "Board hub",
-        desc: "Documents, meeting notes, and governance in one place the whole board can actually use.",
+        desc: "Documents, meeting notes, and governance in one place — coming soon.",
+        status: "soon",
       },
     ],
   },
@@ -98,9 +137,9 @@ const FEATURE_GROUPS = [
 function CC_Features() {
   useScrollReveal();
   useMeta({
-    title: "Features | neighborspace",
+    title: "Features | NeighborSpace",
     description:
-      "Explore every feature of neighborspace — dues and payments, maintenance, violations, voting, calendar, directory, safety alerts, and board governance in one platform.",
+      "Explore NeighborSpace features — bulletin board, calendar, verified resident directory, local resources, and the violations, dues, voting, and board tools on the roadmap.",
   });
 
   return (
@@ -112,11 +151,11 @@ function CC_Features() {
             Features
           </span>
           <h1 className="mt-4 font-display text-[clamp(36px,6vw,64px)] font-extrabold text-white leading-tight">
-            One platform. Every part of community life.
+            Everything your community needs to stay connected.
           </h1>
           <p className="mt-5 font-body text-[20px] font-light text-white/80">
-            From dues collection to board elections, neighborspace replaces the spreadsheets, group
-            chats, and paper notices your community has been juggling.
+            Start with the essentials today. More tools are on the way — shaped by the communities
+            using NeighborSpace.
           </p>
         </div>
       </section>
@@ -136,12 +175,19 @@ function CC_Features() {
                 {group.items.map((item, i) => (
                   <div
                     key={item.title}
-                    className={`rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-1 hover:shadow-lg reveal-on-scroll stagger-${i + 1}`}
+                    className={`relative rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-1 hover:shadow-lg reveal-on-scroll stagger-${i + 1}`}
                   >
+                    <span
+                      className={`status-badge status-${item.status} absolute top-4 right-4`}
+                    >
+                      {STATUS_LABEL[item.status]}
+                    </span>
                     <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
                       <item.icon className="h-6 w-6" />
                     </div>
-                    <h3 className="font-display text-[18px] font-bold text-bark">{item.title}</h3>
+                    <h3 className="font-display text-[18px] font-bold text-bark pr-16">
+                      {item.title}
+                    </h3>
                     <p className="mt-2 font-body text-[14px] leading-relaxed text-text-light">
                       {item.desc}
                     </p>
@@ -158,14 +204,14 @@ function CC_Features() {
       <section className="bg-white px-6 md:px-10 py-[80px]">
         <div className="mx-auto max-w-4xl text-center reveal-on-scroll">
           <h2 className="font-display text-[clamp(28px,4vw,42px)] font-bold text-bark">
-            Why communities choose neighborspace
+            Why communities choose NeighborSpace
           </h2>
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
             {[
               "One source of truth — no more three spreadsheets and a group chat",
               "Hands-on onboarding — we set up your community and walk your board through it",
               "Built for every role — residents, boards, and managers all get what they need",
-              "Secure payments — PCI-compliant dues collection your board never touches",
+              "Your data stays yours — we never sell or share resident information",
             ].map((point) => (
               <div
                 key={point}
@@ -206,17 +252,17 @@ function CC_Features() {
 export const Route = createFileRoute("/features")({
   head: () => ({
     meta: [
-      { title: "Features | neighborspace" },
+      { title: "Features | NeighborSpace" },
       {
         name: "description",
         content:
-          "Explore every feature of neighborspace — dues and payments, maintenance, violations, voting, calendar, directory, safety alerts, and board governance in one platform.",
+          "Explore NeighborSpace features — bulletin board, calendar, verified resident directory, local resources, and the violations, dues, voting, and board tools on the roadmap.",
       },
-      { property: "og:title", content: "Features | neighborspace" },
+      { property: "og:title", content: "Features | NeighborSpace" },
       {
         property: "og:description",
         content:
-          "Every feature of neighborspace — dues, maintenance, violations, voting, calendar, directory, and board governance in one platform.",
+          "Everything your community needs to stay connected — what's live today and what's on the NeighborSpace roadmap.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

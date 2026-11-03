@@ -10,9 +10,9 @@ import { CC_DevelopmentTiers } from "@/components/CC_DevelopmentTiers";
 export default function CC_Development() {
   useScrollReveal();
   useMeta({
-    title: "Development | neighborspace",
+    title: "Development | NeighborSpace",
     description:
-      "neighborspace powers community platforms for developers, builders, and new neighborhoods — from pre-sale through the handoff to an elected resident board. See what's available today and what's on the roadmap.",
+      "NeighborSpace powers community platforms for developers, builders, and new neighborhoods — from pre-sale through the handoff to an elected resident board. See what's available today and what's on the roadmap.",
   });
 
   const scrollToSection = (id: string) => {
@@ -41,7 +41,7 @@ export default function CC_Development() {
             From Day One
           </h1>
           <p className="mx-auto mt-4 max-w-[680px] font-body text-[19px] font-light text-white/85">
-            neighborspace powers community platforms for developers, builders, and new neighborhoods
+            NeighborSpace powers community platforms for developers, builders, and new neighborhoods
             — from pre-sale to long after closing.
           </p>
 

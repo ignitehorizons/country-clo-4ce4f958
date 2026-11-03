@@ -14,13 +14,13 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CC_AuthProvider } from "@/context/CC_AuthContext";
 
-const SITE_TITLE = "neighborspace — The operating system for connected communities";
+const SITE_TITLE = "NeighborSpace — Where Communities Connect";
 const SITE_DESCRIPTION =
-  "neighborspace is the all-in-one community management platform for HOAs, condo associations, and neighborhoods — dues, maintenance, violations, voting, and resident communication in one place.";
+  "NeighborSpace is a private, branded home for your community — announcements, events, a verified neighbor directory, and local resources in one place for your HOA, condo association, or neighborhood.";
 const OG_DESCRIPTION =
-  "neighborspace is the all-in-one community management platform for HOAs, condo associations, and neighborhoods — dues, maintenance, violations, voting, and resident communication in one place.";
+  "NeighborSpace is a private, branded home for your community — announcements, events, a verified neighbor directory, and local resources in one place.";
 const TWITTER_DESCRIPTION =
-  "The all-in-one community management platform for HOAs, condo associations, and neighborhoods.";
+  "A private, branded home for your community — announcements, events, a verified neighbor directory, and local resources in one place.";
 const OG_IMAGE =
   "https://vibe.filesafe.space/1775231453582117442/assets/552daf8d-fd5e-42b6-83e7-be4464557220.png";
 import { reportVibeError } from "../lib/vibe-error-reporting";

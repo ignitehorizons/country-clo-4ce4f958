@@ -8,9 +8,9 @@ import { Link } from "@/lib/router-compat";
 export default function CC_About() {
   useScrollReveal();
   useMeta({
-    title: "About | neighborspace",
+    title: "About | NeighborSpace",
     description:
-      "neighborspace is the all-in-one community management platform for HOAs, condo associations, and neighborhoods — built to replace spreadsheets, group chats, and paper notices with one source of truth.",
+      "NeighborSpace is the all-in-one community management platform for HOAs, condo associations, and neighborhoods — built to replace spreadsheets, group chats, and paper notices with one source of truth.",
   });
   return (
     <CC_Layout>
@@ -27,11 +27,11 @@ export default function CC_About() {
             The operating system for connected communities
           </span>
           <h1 className="font-display text-white text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4">
-            About neighborspace
+            About NeighborSpace
           </h1>
           <p className="text-white/90 font-body text-lg md:text-xl">
-            One platform for dues, maintenance, violations, voting, and resident communication —
-            built for boards, managers, and the people who live there.
+            One platform for announcements, events, a verified neighbor directory, and local
+            resources — built for boards, managers, and the people who live there.
           </p>
         </div>
       </section>
@@ -47,7 +47,7 @@ export default function CC_About() {
               <p>
                 Every community ends up running on the same stack: a spreadsheet for dues, a group
                 chat for announcements, a paper log for violations, and a filing cabinet for
-                documents. neighborspace replaces all of it with one source of truth.
+                documents. NeighborSpace replaces all of it with one source of truth.
               </p>
               <p>
                 We built it for the boards who volunteer their time, the managers who juggle
@@ -55,7 +55,7 @@ export default function CC_About() {
                 scrolling through a Facebook group at 11 p.m.
               </p>
               <p>
-                From a 26-home neighborhood to a 500-unit association, neighborspace is built to
+                From a 26-home neighborhood to a 500-unit association, NeighborSpace is built to
                 grow with your community and keep every record in one place.
               </p>
             </div>
@@ -69,7 +69,7 @@ export default function CC_About() {
                 { number: "Beta", label: "Now in early access" },
                 { number: "1:1", label: "Hands-on onboarding" },
                 { number: "Open", label: "Public roadmap" },
-                { number: "$0", label: "For residents, always" },
+                { number: "Yours", label: "Your data stays yours" },
               ].map((stat) => (
                 <div key={stat.label}>
                   <div className="font-display text-[36px] font-extrabold text-accent leading-none">
@@ -144,7 +144,7 @@ export default function CC_About() {
             See it for yourself.
           </h2>
           <p className="mt-4 font-body text-[18px] text-white/90">
-            Book a free demo and we'll show you how neighborspace fits your community.
+            Book a free demo and we'll show you how NeighborSpace fits your community.
           </p>
           <Link
             to="/contact"

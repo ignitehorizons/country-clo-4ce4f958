@@ -27,9 +27,9 @@ const CF_COMMUNITY = "J1tYGmH1Z8QkFk8UT9h2";
 function CC_Demo() {
   useScrollReveal();
   useMeta({
-    title: "Book a Demo | neighborspace",
+    title: "Book a Demo | NeighborSpace",
     description:
-      "Book a free 20-minute demo of neighborspace. See the platform with your community's data — for HOAs, condo associations, neighborhoods, property managers, and builders.",
+      "Book a free 20-minute demo of NeighborSpace. See the platform with your community's data — for HOAs, condo associations, neighborhoods, property managers, and builders.",
   });
 
   const { startMs, endMs } = useMemo(() => getInitialRange(), []);
@@ -127,11 +127,11 @@ function CC_Demo() {
             Book a Demo
           </span>
           <h1 className="mt-4 font-display text-[clamp(36px,6vw,64px)] font-extrabold text-white leading-tight">
-            See neighborspace with your data.
+            See NeighborSpace with your data.
           </h1>
           <p className="mt-5 font-body text-[20px] font-light text-white/80">
             A free 20-minute walkthrough for boards, managers, and builders. We'll load your
-            community's records and map the right plan — no pressure, no setup fees.
+            community's records and map the right setup — no pressure, no obligation.
           </p>
         </div>
       </section>
@@ -409,17 +409,17 @@ function CC_Demo() {
 export const Route = createFileRoute("/demo")({
   head: () => ({
     meta: [
-      { title: "Book a Demo | neighborspace" },
+      { title: "Book a Demo | NeighborSpace" },
       {
         name: "description",
         content:
-          "Book a free 20-minute demo of neighborspace. See the platform with your community's data — for HOAs, condo associations, neighborhoods, property managers, and builders.",
+          "Book a free 20-minute demo of NeighborSpace. See the platform with your community's data — for HOAs, condo associations, neighborhoods, property managers, and builders.",
       },
-      { property: "og:title", content: "Book a Demo | neighborspace" },
+      { property: "og:title", content: "Book a Demo | NeighborSpace" },
       {
         property: "og:description",
         content:
-          "Book a free 20-minute demo of neighborspace for your HOA, condo association, neighborhood, or development.",
+          "Book a free 20-minute demo of NeighborSpace for your HOA, condo association, neighborhood, or development.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

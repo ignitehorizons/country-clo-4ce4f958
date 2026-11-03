@@ -99,7 +99,7 @@ export const CC_PortalGuard = () => {
           to="/"
           className="inline-flex items-center h-[48px] mb-6 font-display text-[28px] font-extrabold tracking-tight text-bark hover:opacity-80 transition-opacity"
         >
-          neighbor<span className="text-accent">space</span>
+          Neighbor<span className="text-accent">Space</span>
         </Link>
 
         <h1 className="font-display font-bold text-[28px] text-bark mb-2">
@@ -112,7 +112,7 @@ export const CC_PortalGuard = () => {
 
         <p className="font-body text-[15px] text-text-light leading-[1.6] mb-8">
           {mode === "signin"
-            ? "neighborspace.app is a private platform for community members only. Please sign in to continue."
+            ? "NeighborSpace is a private platform for community members only. Please sign in to continue."
             : mode === "signup"
               ? "Sign up with your email. We'll send a confirmation link before you can sign in."
               : "Enter your email and we'll send a link to reset your password."}
@@ -249,7 +249,7 @@ export const CC_PortalGuard = () => {
 
         <div className="mt-6 flex items-center justify-center gap-1.5 text-text-light">
           <Lock size={12} />
-          <span className="font-body text-[12px]">Secured by neighborspace</span>
+          <span className="font-body text-[12px]">Secured by NeighborSpace</span>
         </div>
       </div>
     </div>

@@ -477,6 +477,36 @@ select:focus {
   border-color: var(--color-primary);
 }
 
+/* Feature / roadmap status badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.status-live {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+.status-dev {
+  background-color: #f59e0b;
+  color: #422006;
+}
+.status-soon {
+  background-color: #6b7280;
+  color: #ffffff;
+}
+.status-roadmap {
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
+
 /* Portal Cards */
 .portal-card {
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);

@@ -7,9 +7,9 @@ import { CC_JoinBenefits } from "@/components/CC_JoinBenefits";
 export default function CC_Join() {
   useScrollReveal();
   useMeta({
-    title: "Join | neighborspace",
+    title: "Join | NeighborSpace",
     description:
-      "Join your community on neighborspace — free for verified residents. Create your account, set your privacy preferences, and connect with your neighbors.",
+      "Join your community on NeighborSpace — free for verified residents. Create your account, set your privacy preferences, and connect with your neighbors.",
   });
 
   return (

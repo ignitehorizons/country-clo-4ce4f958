@@ -19,6 +19,7 @@ import { Route as JoinRouteImport } from './routes/join'
 import { Route as PortalRouteRouteImport } from './routes/portal/route'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -93,6 +94,11 @@ const PricingRoute = PricingRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoadmapRoute = RoadmapRouteImport.update({
+  id: '/roadmap',
+  path: '/roadmap',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SponsorsRoute = SponsorsRouteImport.update({
@@ -232,6 +238,7 @@ export interface FileRoutesByFullPath {
   '/join': typeof JoinRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/roadmap': typeof RoadmapRoute
   '/sponsors': typeof SponsorsRoute
   '/stories': typeof StoriesRoute
   '/terms': typeof TermsRoute
@@ -268,6 +275,7 @@ export interface FileRoutesByTo {
   '/join': typeof JoinRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/roadmap': typeof RoadmapRoute
   '/sponsors': typeof SponsorsRoute
   '/stories': typeof StoriesRoute
   '/terms': typeof TermsRoute
@@ -306,6 +314,7 @@ export interface FileRoutesById {
   '/join': typeof JoinRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/roadmap': typeof RoadmapRoute
   '/sponsors': typeof SponsorsRoute
   '/stories': typeof StoriesRoute
   '/terms': typeof TermsRoute
@@ -345,6 +354,7 @@ export interface FileRouteTypes {
     | '/join'
     | '/pricing'
     | '/privacy'
+    | '/roadmap'
     | '/sponsors'
     | '/stories'
     | '/terms'
@@ -381,6 +391,7 @@ export interface FileRouteTypes {
     | '/join'
     | '/pricing'
     | '/privacy'
+    | '/roadmap'
     | '/sponsors'
     | '/stories'
     | '/terms'
@@ -418,6 +429,7 @@ export interface FileRouteTypes {
     | '/join'
     | '/pricing'
     | '/privacy'
+    | '/roadmap'
     | '/sponsors'
     | '/stories'
     | '/terms'
@@ -456,6 +468,7 @@ export interface RootRouteChildren {
   JoinRoute: typeof JoinRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
+  RoadmapRoute: typeof RoadmapRoute
   SponsorsRoute: typeof SponsorsRoute
   StoriesRoute: typeof StoriesRoute
   TermsRoute: typeof TermsRoute
@@ -531,6 +544,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roadmap': {
+      id: '/roadmap'
+      path: '/roadmap'
+      fullPath: '/roadmap'
+      preLoaderRoute: typeof RoadmapRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sponsors': {
@@ -776,6 +796,7 @@ const rootRouteChildren: RootRouteChildren = {
   JoinRoute: JoinRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
+  RoadmapRoute: RoadmapRoute,
   SponsorsRoute: SponsorsRoute,
   StoriesRoute: StoriesRoute,
   TermsRoute: TermsRoute,
