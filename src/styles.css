@@ -16,8 +16,8 @@
 }
 
 @theme inline {
-  --font-display: "Inter", sans-serif;
-  --font-body: "Inter", sans-serif;
+  --font-display: "Playfair Display", "Inter", serif;
+  --font-body: "Lato", "Inter", sans-serif;
   --font-accent: "Inter", sans-serif;
 
   --color-text: rgb(var(--rgb-text));
@@ -246,8 +246,8 @@ All colors MUST be HSL.
     --rgb-border: 226 232 240;
     --rgb-text: 15 23 42;
     --rgb-text-light: 71 85 105;
-    --font-display: "Inter", sans-serif;
-    --font-body: "Inter", sans-serif;
+    --font-display: "Playfair Display", "Inter", serif;
+    --font-body: "Lato", "Inter", sans-serif;
     --font-accent: "Inter", sans-serif;
     --radius-sm: 6px;
     --radius-md: 12px;
@@ -517,14 +517,61 @@ select:focus {
 }
 
 /* Hero lantern "turn on" animation */
-.hero-lantern__img {
-  filter: brightness(0.55) saturate(0.8);
+:root {
+  /* Default desktop lantern coordinates (1774 x 488) */
+  --lantern-x: 20.6%;
+  --lantern-y: 30.5%;
+  --lantern-mask-w: 7%;
+  --lantern-glow-w: 22%;
+  --hero-aspect: 1774 / 488;
+}
+
+@media (max-width: 767px) {
+  :root {
+    /* Mobile lantern coordinates (1190 x 488) */
+    --lantern-x: 11.3%;
+    --lantern-y: 30.7%;
+    --lantern-mask-w: 10.4%;
+    --lantern-glow-w: 33%;
+    --hero-aspect: 1190 / 488;
+  }
+}
+
+.hero-lantern {
+  aspect-ratio: var(--hero-aspect);
 }
 .hero-lantern__mask {
+  left: var(--lantern-x);
+  top: var(--lantern-y);
+  width: var(--lantern-mask-w);
+  aspect-ratio: 0.8;
+  transform: translate(-50%, -50%);
+  border-radius: 20%;
+  background: radial-gradient(
+    circle,
+    rgba(10, 14, 22, 0.85) 0%,
+    rgba(10, 14, 22, 0.6) 60%,
+    rgba(10, 14, 22, 0) 100%
+  );
   opacity: 1;
 }
 .hero-lantern__glow {
+  left: var(--lantern-x);
+  top: var(--lantern-y);
+  width: var(--lantern-glow-w);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  background: radial-gradient(
+    circle,
+    rgba(255, 200, 110, 0.55) 0%,
+    rgba(255, 170, 60, 0.25) 35%,
+    rgba(255, 170, 60, 0) 70%
+  );
   opacity: 0;
+}
+.hero-lantern__img {
+  filter: brightness(0.55) saturate(0.8);
 }
 .lights-on .hero-lantern__img {
   animation: lantern-img-on 2.5s ease-out forwards;

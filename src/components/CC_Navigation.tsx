@@ -77,11 +77,14 @@ export const CC_Navigation = () => {
     <>
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-100 h-[72px] transition-all duration-300 flex items-center px-6 md:px-12",
-          scrolled ? "bg-white shadow-md" : "bg-transparent",
+          "fixed top-0 left-0 right-0 z-100 transition-all duration-300 flex items-center px-4 sm:px-6 md:px-12",
+          // Under 768px: solid navy bar (#0B1426), exactly 64px tall
+          "h-[64px] md:h-[72px] bg-[#0B1426] md:bg-transparent",
+          scrolled && "md:bg-white md:shadow-md",
         )}
       >
-        <div className="flex-1">
+        {/* Wordmark: hidden under 768px; visible from md (768px+) */}
+        <div className="hidden md:flex flex-1">
           <Link
             to="/"
             className={cn(
@@ -93,6 +96,7 @@ export const CC_Navigation = () => {
           </Link>
         </div>
 
+        {/* Desktop nav links: hidden below lg (1024px) */}
         <div className="hidden lg:flex flex-1 justify-center items-center gap-8">
           {navLinks.map((link) => (
             <NavLink
@@ -115,7 +119,11 @@ export const CC_Navigation = () => {
           ))}
         </div>
 
-        <div className="flex-1 flex justify-end items-center gap-2 sm:gap-3">
+        {/* Right side actions:
+            - Under 768px: Member Portal (15px font, 10px 16px padding) + Menu button (hamburger + "Menu"), 12px gap
+            - Desktop: Book a demo + Member Portal + hamburger if <1024px
+        */}
+        <div className="w-full md:w-auto md:flex-1 flex justify-end items-center gap-3">
           <Link
             to="/demo"
             className="hidden lg:inline-flex items-center justify-center whitespace-nowrap border-2 border-accent/40 bg-transparent text-accent font-body font-bold text-[15px] rounded-[100px] px-[20px] py-[10px] transition-all duration-200 ease-out hover:bg-accent hover:text-white"
@@ -124,20 +132,19 @@ export const CC_Navigation = () => {
           </Link>
           <Link
             to="/portal"
-            className="inline-flex items-center justify-center whitespace-nowrap bg-accent text-white font-body font-bold text-[13px] sm:text-[15px] rounded-[100px] px-3 sm:px-[24px] py-1.5 sm:py-[10px] border-none transition-all duration-200 ease-out hover:bg-accent-hover hover:translate-y-[-2px] hover:shadow-[0_6px_20px_rgba(2,132,199,0.35)]"
+            className="inline-flex items-center justify-center whitespace-nowrap bg-accent text-white font-body font-bold text-[15px] rounded-[100px] px-[16px] py-[10px] border-none transition-all duration-200 ease-out hover:bg-accent-hover hover:translate-y-[-2px] hover:shadow-[0_6px_20px_rgba(2,132,199,0.35)]"
           >
             Member Portal
           </Link>
           <button
-            className="lg:hidden p-2 sm:p-3 min-w-[40px] min-h-[40px] z-201 flex items-center justify-center"
+            className="lg:hidden flex items-center justify-center gap-1.5 px-3 py-2 text-white font-body text-[15px] font-semibold rounded-md transition-colors hover:bg-white/10"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Toggle mobile menu"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu-drawer"
           >
-            <Menu
-              className={cn("w-6 h-6", !scrolled && !mobileMenuOpen ? "text-white" : "text-text")}
-            />
+            <Menu className="w-6 h-6 text-white" />
+            <span className="md:hidden text-white">Menu</span>
           </button>
         </div>
       </nav>
