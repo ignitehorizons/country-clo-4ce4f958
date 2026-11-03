@@ -506,6 +506,14 @@ select:focus {
   background-color: var(--color-accent);
   color: #ffffff;
 }
+.status-beta {
+  background-color: #1e88e5;
+  color: #ffffff;
+}
+.status-builder {
+  background-color: var(--color-secondary);
+  color: #0f172a;
+}
 
 /* Portal Cards */
 .portal-card {
