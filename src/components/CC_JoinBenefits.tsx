@@ -17,7 +17,7 @@ const STATS = [
 export const CC_JoinBenefits = () => {
   return (
     <div className="bg-primary rounded-[16px] p-[40px_32px] text-white">
-      <h3 className="font-display font-bold text-[24px] mb-[24px]">Why neighborspace?</h3>
+      <h3 className="font-display font-bold text-[24px] mb-[24px]">Why NeighborSpace?</h3>
 
       <ul className="space-y-[16px]">
         {BENEFITS.map((benefit, i) => (
@@ -54,7 +54,7 @@ export const CC_JoinBenefits = () => {
         <p className="font-body italic text-[14px] text-white/85 relative z-10 pt-4 mb-4">
           Finally a place to stay connected without all the noise.
         </p>
-        <p className="font-body font-bold text-[12px] text-accent">— A neighborspace resident</p>
+        <p className="font-body font-bold text-[12px] text-accent">— A NeighborSpace resident</p>
       </div>
     </div>
   );

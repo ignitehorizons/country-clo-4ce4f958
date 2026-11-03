@@ -175,7 +175,8 @@ export default function CC_Home() {
               </Link>
             </div>
             <p className="mt-8 font-body text-[13px] text-white/60">
-              Built by a 30-year public safety leader · Hands-on onboarding · Your data is never sold
+              Built by a 30-year public safety leader · Hands-on onboarding · Your data is never
+              sold
             </p>
           </div>
         </div>
@@ -218,9 +219,7 @@ export default function CC_Home() {
                 key={card.title}
                 className={`group relative flex flex-col rounded-2xl border border-border bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:shadow-lg reveal-on-scroll stagger-${(i % 3) + 1}`}
               >
-                <span
-                  className={`status-badge status-${card.status} absolute top-4 right-4`}
-                >
+                <span className={`status-badge status-${card.status} absolute top-4 right-4`}>
                   {STATUS_LABEL[card.status]}
                 </span>
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">

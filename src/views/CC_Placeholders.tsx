@@ -59,9 +59,9 @@ const createPortalPlaceholder = (name: string, path: string) => {
 // Legal Pages
 export const CC_Privacy = () => {
   useMeta({
-    title: "Privacy Policy | neighborspace",
+    title: "Privacy Policy | NeighborSpace",
     description:
-      "neighborspace privacy policy — how we collect, use, and protect your personal information. Your data is private, shared only within your community, and never sold.",
+      "NeighborSpace privacy policy — how we collect, use, and protect your personal information. Your data is private, shared only within your community, and never sold.",
   });
   return (
     <CC_Layout>
@@ -79,7 +79,7 @@ export const CC_Privacy = () => {
                 1. Information We Collect
               </h2>
               <p className="leading-relaxed">
-                neighborspace collects the information you and your community provide — names,
+                NeighborSpace collects the information you and your community provide — names,
                 addresses, contact details, and community records — to run the platform. We collect
                 only what is needed to deliver community management features.
               </p>
@@ -103,9 +103,9 @@ export const CC_Privacy = () => {
 
 export const CC_Terms = () => {
   useMeta({
-    title: "Terms of Use | neighborspace",
+    title: "Terms of Use | NeighborSpace",
     description:
-      "neighborspace terms of use — community guidelines, resident responsibilities, and the rules that keep our community platform useful and respectful.",
+      "NeighborSpace terms of use — community guidelines, resident responsibilities, and the rules that keep our community platform useful and respectful.",
   });
   return (
     <CC_Layout>
@@ -123,7 +123,7 @@ export const CC_Terms = () => {
                 1. Acceptance of Terms
               </h2>
               <p className="leading-relaxed">
-                By accessing neighborspace, you agree to these terms and to your community's
+                By accessing NeighborSpace, you agree to these terms and to your community's
                 guidelines. The platform is provided for the management and communication needs of
                 residents, boards, and managers.
               </p>
@@ -133,7 +133,7 @@ export const CC_Terms = () => {
                 2. User Responsibilities
               </h2>
               <p className="leading-relaxed">
-                You agree to use neighborspace respectfully and lawfully, to keep your account
+                You agree to use NeighborSpace respectfully and lawfully, to keep your account
                 credentials secure, and to provide accurate information to your community and its
                 board.
               </p>

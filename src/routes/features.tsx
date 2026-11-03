@@ -177,9 +177,7 @@ function CC_Features() {
                     key={item.title}
                     className={`relative rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-1 hover:shadow-lg reveal-on-scroll stagger-${i + 1}`}
                   >
-                    <span
-                      className={`status-badge status-${item.status} absolute top-4 right-4`}
-                    >
+                    <span className={`status-badge status-${item.status} absolute top-4 right-4`}>
                       {STATUS_LABEL[item.status]}
                     </span>
                     <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">

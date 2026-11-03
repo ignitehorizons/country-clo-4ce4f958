@@ -103,7 +103,9 @@ const CC_Sponsors = () => {
           {/* Right Column — CTA card */}
           <div className="flex flex-1 flex-col gap-4">
             <div className="rounded-xl border border-white/15 bg-white/5 p-6 md:px-8 reveal-on-scroll stagger-1">
-              <h4 className="font-body text-[18px] font-bold text-white">Become a community partner</h4>
+              <h4 className="font-body text-[18px] font-bold text-white">
+                Become a community partner
+              </h4>
               <p className="mt-2 font-body text-[14px] text-white/70">
                 Partner listings are added as communities grow. Tell us about your business and the
                 communities you'd like to reach, and we'll be in touch.

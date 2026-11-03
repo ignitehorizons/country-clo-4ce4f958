@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { Link } from "@/lib/router-compat";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export const CC_DevelopmentTiers = () => {
@@ -20,9 +21,6 @@ export const CC_DevelopmentTiers = () => {
             <div className="mb-2 font-body text-[13px] font-bold uppercase tracking-[2px] text-[#7A6A5A]">
               Neighbor
             </div>
-            <div className="font-display text-[clamp(32px,4vw,48px)] font-black text-[#4A3728]">
-              Free
-            </div>
             <p className="my-3 font-body text-[14px] text-[#7A6A5A]">
               Basic tools for connected neighbors.
             </p>
@@ -41,19 +39,18 @@ export const CC_DevelopmentTiers = () => {
                 </div>
               ))}
             </div>
-            <button className="w-full rounded-md border-2 border-[#2D5016] py-2 font-body text-[14px] font-bold text-[#2D5016] transition-all duration-200 hover:bg-[#2D5016] hover:text-white">
-              Get Started
-            </button>
+            <Link
+              to="/demo"
+              className="flex w-full items-center justify-center rounded-md border-2 border-[#2D5016] py-2 font-body text-[14px] font-bold text-[#2D5016] transition-all duration-200 hover:bg-[#2D5016] hover:text-white"
+            >
+              Book a demo
+            </Link>
           </div>
 
           {/* Tier 2 */}
           <div className="flex flex-col rounded-[16px] border border-[#DDD5C8] bg-white p-[28px] pt-[32px] reveal-on-scroll stagger-2">
             <div className="mb-2 font-body text-[13px] font-bold uppercase tracking-[2px] text-[#7A6A5A]">
               Community
-            </div>
-            <div className="font-display text-[clamp(32px,4vw,48px)] font-black text-[#4A3728]">
-              $79
-              <span className="font-body text-[14px] font-normal text-[#7A6A5A]">/month</span>
             </div>
             <p className="my-3 font-body text-[14px] text-[#7A6A5A]">
               For active, growing neighborhoods.
@@ -75,9 +72,12 @@ export const CC_DevelopmentTiers = () => {
                 </div>
               ))}
             </div>
-            <button className="w-full rounded-md border-2 border-[#2D5016] py-2 font-body text-[14px] font-bold text-[#2D5016] transition-all duration-200 hover:bg-[#2D5016] hover:text-white">
-              Start Trial
-            </button>
+            <Link
+              to="/demo"
+              className="flex w-full items-center justify-center rounded-md border-2 border-[#2D5016] py-2 font-body text-[14px] font-bold text-[#2D5016] transition-all duration-200 hover:bg-[#2D5016] hover:text-white"
+            >
+              Book a demo
+            </Link>
           </div>
 
           {/* Tier 3 */}
@@ -87,10 +87,6 @@ export const CC_DevelopmentTiers = () => {
             </div>
             <div className="mb-2 font-body text-[13px] font-bold uppercase tracking-[2px] text-[#7A6A5A]">
               Association
-            </div>
-            <div className="font-display text-[clamp(32px,4vw,48px)] font-black text-[#4A3728]">
-              $199
-              <span className="font-body text-[14px] font-normal text-[#7A6A5A]">/month</span>
             </div>
             <p className="my-3 font-body text-[14px] text-[#7A6A5A]">Full management for HOAs.</p>
             <div className="mb-8 flex-1 space-y-2">
@@ -110,19 +106,18 @@ export const CC_DevelopmentTiers = () => {
                 </div>
               ))}
             </div>
-            <button className="w-full rounded-md bg-[#2D5016] py-2 font-body text-[14px] font-bold text-white transition-colors hover:bg-[#3D6B20]">
-              Start Trial
-            </button>
+            <Link
+              to="/demo"
+              className="flex w-full items-center justify-center rounded-md bg-[#2D5016] py-2 font-body text-[14px] font-bold text-white transition-colors hover:bg-[#3D6B20]"
+            >
+              Book a demo
+            </Link>
           </div>
 
           {/* Tier 4 */}
           <div className="flex flex-col rounded-[16px] border border-[#DDD5C8] bg-white p-[28px] pt-[32px] reveal-on-scroll stagger-4">
             <div className="mb-2 font-body text-[13px] font-bold uppercase tracking-[2px] text-[#7A6A5A]">
               Developer
-            </div>
-            <div className="font-display text-[clamp(32px,4vw,48px)] font-black text-[#4A3728]">
-              $799
-              <span className="font-body text-[14px] font-normal text-[#7A6A5A]">/month</span>
             </div>
             <p className="my-3 font-body text-[14px] text-[#7A6A5A]">
               Complete lifecycle platform.
@@ -144,9 +139,12 @@ export const CC_DevelopmentTiers = () => {
                 </div>
               ))}
             </div>
-            <button className="w-full rounded-md bg-[#E8A020] py-2 font-body text-[14px] font-bold text-[#4A3728] transition-colors hover:bg-[#D4911A]">
-              Contact Sales
-            </button>
+            <Link
+              to="/demo"
+              className="flex w-full items-center justify-center rounded-md bg-[#E8A020] py-2 font-body text-[14px] font-bold text-[#4A3728] transition-colors hover:bg-[#D4911A]"
+            >
+              Book a demo
+            </Link>
           </div>
         </div>
       </div>

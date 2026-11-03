@@ -71,9 +71,7 @@ function CC_Roadmap() {
               key={card.title}
               className={`flex flex-col rounded-2xl border border-border bg-white p-8 reveal-on-scroll stagger-${(i % 2) + 1}`}
             >
-              <span
-                className={`status-badge status-${card.badge} w-fit`}
-              >
+              <span className={`status-badge status-${card.badge} w-fit`}>
                 {STATUS_LABEL[card.badge]}
               </span>
               <h3 className="mt-4 font-display text-[20px] font-bold text-bark">{card.title}</h3>

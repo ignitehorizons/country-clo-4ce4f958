@@ -179,8 +179,8 @@ export const CC_DevelopmentInterestForm = () => {
             <div className="my-6 h-px w-full bg-white/15" />
 
             <p className="font-body text-[14px] text-white/70">
-              Developer tier starts at $799/month. Includes full platform access for your entire
-              development.
+              The Developer tier includes full platform access for your entire development. Book a
+              walkthrough to see it with your community's data.
             </p>
           </div>
         </div>
