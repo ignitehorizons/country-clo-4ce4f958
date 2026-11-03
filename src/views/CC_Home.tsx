@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { CC_Layout } from "@/components/CC_Layout";
 import { Link } from "@/lib/router-compat";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -109,6 +110,7 @@ const FEATURES: {
 
 export default function CC_Home() {
   useScrollReveal();
+  const [heroLoaded, setHeroLoaded] = useState(false);
   useMeta({
     title: "NeighborSpace — Where Communities Connect",
     description:
@@ -121,11 +123,52 @@ export default function CC_Home() {
       <section className="relative w-full bg-[#0B1426]">
         {/* Full image width with object-fit: contain on navy background; no cropping; no duplicate text overlay */}
         <div className="w-full bg-[#0B1426] flex items-center justify-center overflow-hidden">
-          <img
-            src={HERO_BANNER}
-            alt="NeighborSpace hero banner — Where Communities Connect, with NS lantern and wooden park bench"
-            className="w-full h-auto max-h-[68vh] md:max-h-[75vh] object-contain block"
-          />
+          <div
+            className={`hero-lantern relative w-full max-w-[1400px] ${heroLoaded ? "lights-on" : ""}`}
+            style={{ aspectRatio: "1774 / 488" }}
+          >
+            <img
+              src={HERO_BANNER}
+              alt="NeighborSpace hero banner — Where Communities Connect, with NS lantern and wooden park bench"
+              className="hero-lantern__img absolute inset-0 w-full h-full object-contain block"
+              onLoad={() => setHeroLoaded(true)}
+              onError={() => setHeroLoaded(false)}
+            />
+            {/* Lantern "off" mask — dark shape over the lantern glass */}
+            {heroLoaded && (
+              <div
+                aria-hidden="true"
+                className="hero-lantern__mask pointer-events-none absolute"
+                style={{
+                  left: "20.6%",
+                  top: "30.5%",
+                  width: "7%",
+                  aspectRatio: "0.8",
+                  transform: "translate(-50%, -50%)",
+                  borderRadius: "20%",
+                  background:
+                    "radial-gradient(circle, rgba(10,14,22,0.85) 0%, rgba(10,14,22,0.6) 60%, rgba(10,14,22,0) 100%)",
+                }}
+              />
+            )}
+            {/* Lantern "on" glow — warm light bloom */}
+            {heroLoaded && (
+              <div
+                aria-hidden="true"
+                className="hero-lantern__glow pointer-events-none absolute"
+                style={{
+                  left: "20.6%",
+                  top: "30.5%",
+                  width: "22%",
+                  aspectRatio: "1",
+                  transform: "translate(-50%, -50%)",
+                  mixBlendMode: "screen",
+                  background:
+                    "radial-gradient(circle, rgba(255,200,110,0.55) 0%, rgba(255,170,60,0.25) 35%, rgba(255,170,60,0) 70%)",
+                }}
+              />
+            )}
+          </div>
         </div>
 
         {/* Centered text block on navy */}

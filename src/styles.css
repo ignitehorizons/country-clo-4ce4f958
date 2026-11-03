@@ -516,6 +516,128 @@ select:focus {
   box-shadow: var(--shadow-md);
 }
 
+/* Hero lantern "turn on" animation */
+.hero-lantern__img {
+  filter: brightness(0.55) saturate(0.8);
+}
+.hero-lantern__mask {
+  opacity: 1;
+}
+.hero-lantern__glow {
+  opacity: 0;
+}
+.lights-on .hero-lantern__img {
+  animation: lantern-img-on 2.5s ease-out forwards;
+}
+.lights-on .hero-lantern__mask {
+  animation: lantern-mask-flicker 0.6s 0.4s both;
+}
+.lights-on .hero-lantern__glow {
+  animation:
+    lantern-glow-turnon 2.5s ease forwards,
+    lantern-glow-pulse 4s 2.5s ease-in-out infinite;
+}
+
+@keyframes lantern-img-on {
+  0%,
+  40% {
+    filter: brightness(0.55) saturate(0.8);
+  }
+  100% {
+    filter: brightness(1) saturate(1);
+  }
+}
+
+@keyframes lantern-mask-flicker {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  40% {
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.2;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes lantern-glow-turnon {
+  0% {
+    opacity: 0;
+  }
+  16% {
+    opacity: 0;
+  }
+  20.8% {
+    opacity: 0.6;
+  }
+  25.6% {
+    opacity: 0.1;
+  }
+  30.4% {
+    opacity: 0.8;
+  }
+  35.2% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes lantern-glow-pulse {
+  0% {
+    opacity: 0.7;
+  }
+  25% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Hero lantern — show the final lit state immediately */
+  .hero-lantern__img {
+    animation: none !important;
+    filter: brightness(1) saturate(1);
+  }
+  .hero-lantern__mask {
+    animation: none !important;
+    opacity: 0;
+  }
+  .hero-lantern__glow {
+    animation: none !important;
+    opacity: 0.7;
+  }
+  .lights-on .hero-lantern__img,
+  .lights-on .hero-lantern__mask,
+  .lights-on .hero-lantern__glow {
+    animation: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
