@@ -93,7 +93,7 @@ export const CC_Navigation = () => {
           </Link>
         </div>
 
-        <div className="hidden md:flex flex-1 justify-center items-center gap-8">
+        <div className="hidden lg:flex flex-1 justify-center items-center gap-8">
           {navLinks.map((link) => (
             <NavLink
               key={link.name}
@@ -115,21 +115,21 @@ export const CC_Navigation = () => {
           ))}
         </div>
 
-        <div className="flex-1 flex justify-end items-center gap-3">
+        <div className="flex-1 flex justify-end items-center gap-2 sm:gap-3">
           <Link
             to="/demo"
-            className="hidden md:inline-flex items-center justify-center border-2 border-accent/40 bg-transparent text-accent font-body font-bold text-[15px] rounded-[100px] px-[20px] py-[10px] transition-all duration-200 ease-out hover:bg-accent hover:text-white"
+            className="hidden lg:inline-flex items-center justify-center whitespace-nowrap border-2 border-accent/40 bg-transparent text-accent font-body font-bold text-[15px] rounded-[100px] px-[20px] py-[10px] transition-all duration-200 ease-out hover:bg-accent hover:text-white"
           >
             Book a demo
           </Link>
           <Link
             to="/portal"
-            className="hidden md:inline-flex items-center justify-center bg-accent text-white font-body font-bold text-[15px] rounded-[100px] px-[24px] py-[10px] border-none transition-all duration-200 ease-out hover:bg-accent-hover hover:translate-y-[-2px] hover:shadow-[0_6px_20px_rgba(2,132,199,0.35)]"
+            className="inline-flex items-center justify-center whitespace-nowrap bg-accent text-white font-body font-bold text-[13px] sm:text-[15px] rounded-[100px] px-3 sm:px-[24px] py-1.5 sm:py-[10px] border-none transition-all duration-200 ease-out hover:bg-accent-hover hover:translate-y-[-2px] hover:shadow-[0_6px_20px_rgba(2,132,199,0.35)]"
           >
             Member Portal
           </Link>
           <button
-            className="md:hidden p-3 min-w-[44px] min-h-[44px] z-201 flex items-center justify-center"
+            className="lg:hidden p-2 sm:p-3 min-w-[40px] min-h-[40px] z-201 flex items-center justify-center"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Toggle mobile menu"
             aria-expanded={mobileMenuOpen}
@@ -142,11 +142,11 @@ export const CC_Navigation = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Menu Drawer (shown below lg = 1024px) */}
       <div
         id="mobile-menu-drawer"
         className={cn(
-          "fixed inset-0 z-200 bg-primary transition-transform duration-300 ease-in-out md:hidden flex flex-col overflow-y-auto",
+          "fixed inset-0 z-200 bg-primary transition-transform duration-300 ease-in-out lg:hidden flex flex-col overflow-y-auto",
           mobileMenuOpen ? "translate-x-0" : "translate-x-full",
         )}
       >
@@ -173,14 +173,14 @@ export const CC_Navigation = () => {
           <NavLink
             to="/demo"
             onClick={() => setMobileMenuOpen(false)}
-            className="text-accent font-display text-[28px]"
+            className="text-accent font-display text-[28px] whitespace-nowrap"
           >
             Book a demo
           </NavLink>
           <NavLink
             to="/portal"
             onClick={() => setMobileMenuOpen(false)}
-            className="text-white font-display text-[28px] mt-4"
+            className="text-white font-display text-[28px] mt-4 whitespace-nowrap"
           >
             Member Portal
           </NavLink>

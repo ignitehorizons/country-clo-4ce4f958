@@ -5,7 +5,7 @@ const communityConfig = {
   established: "2026",
   totalHomes: 30,
   portalUrl: "neighborspace.app/portal",
-  adminEmail: "hello@neighborspace.app",
+  adminEmail: "hello@neighborspace.com",
   adminPhone: "",
   address: "neighborspace.app",
   managementCompany: "",

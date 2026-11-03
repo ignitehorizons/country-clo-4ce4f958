@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 const HERO_BANNER =
-  "https://vibe.filesafe.space/1791050574073732793/assets/232e9ddb-86fb-428e-8e33-cf7d7311b7f9.png";
+  "https://vibe.filesafe.space/1791050574073732793/assets/51f987b9-df93-4a30-ba5f-92b6a16b894c.png";
 
 type Status = "live" | "dev" | "soon";
 
@@ -118,29 +118,14 @@ export default function CC_Home() {
   return (
     <CC_Layout>
       {/* SECTION 1 — HERO (banner + headline block) */}
-      <section className="relative w-full">
-        <div className="relative w-full">
+      <section className="relative w-full bg-[#0B1426]">
+        {/* Full image width with object-fit: contain on navy background; no cropping; no duplicate text overlay */}
+        <div className="w-full bg-[#0B1426] flex items-center justify-center overflow-hidden">
           <img
             src={HERO_BANNER}
-            alt="A park bench under a shade tree in a quiet neighborhood at golden hour"
-            className="w-full h-[58vh] md:h-[70vh] object-cover"
+            alt="NeighborSpace hero banner — Where Communities Connect, with NS lantern and wooden park bench"
+            className="w-full h-auto max-h-[68vh] md:max-h-[75vh] object-contain block"
           />
-          {/* Gradient for nav legibility (top) and transition into navy (bottom) */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(15,23,42,0.55) 0%, rgba(15,23,42,0.10) 38%, rgba(15,23,42,0.92) 100%)",
-            }}
-          />
-          <div className="absolute inset-0 flex items-center justify-center px-6">
-            <h1
-              className="font-display font-extrabold text-white text-center leading-[1.05] tracking-tight animate-text-reveal"
-              style={{ fontSize: "clamp(34px, 6vw, 72px)" }}
-            >
-              Where Communities Connect.
-            </h1>
-          </div>
         </div>
 
         {/* Centered text block on navy */}
@@ -163,13 +148,13 @@ export default function CC_Home() {
             <div className="mt-10 flex flex-col w-full sm:w-auto items-center justify-center gap-4 sm:flex-row">
               <Link
                 to="/demo"
-                className="w-full sm:w-auto flex items-center justify-center h-14 rounded-[100px] bg-accent px-8 text-base font-bold text-white transition-all hover:bg-accent-hover hover:translate-y-[-2px] hover:shadow-[0_8px_24px_rgba(2,132,199,0.4)] active:translate-y-0 active:scale-[0.98]"
+                className="w-full sm:w-auto flex items-center justify-center whitespace-nowrap h-14 rounded-[100px] bg-accent px-8 text-base font-bold text-white transition-all hover:bg-accent-hover hover:translate-y-[-2px] hover:shadow-[0_8px_24px_rgba(2,132,199,0.4)] active:translate-y-0 active:scale-[0.98]"
               >
                 Book a demo
               </Link>
               <Link
                 to="/portal"
-                className="w-full sm:w-auto flex items-center justify-center h-14 rounded-[100px] border-2 border-white/30 bg-transparent px-8 text-base font-semibold text-white transition-all hover:bg-white/10 hover:text-white"
+                className="w-full sm:w-auto flex items-center justify-center whitespace-nowrap h-14 rounded-[100px] border-2 border-white/30 bg-transparent px-8 text-base font-semibold text-white transition-all hover:bg-white/10 hover:text-white"
               >
                 Member Portal
               </Link>

@@ -228,10 +228,10 @@ function CC_Contact() {
               <div className="mt-8 border-t border-white/10 pt-6">
                 <p className="font-body text-[13px] text-white/60">Prefer email?</p>
                 <a
-                  href="mailto:hello@neighborspace.app"
+                  href="mailto:hello@neighborspace.com"
                   className="mt-1 inline-block font-body text-[15px] font-semibold text-accent hover:underline"
                 >
-                  hello@neighborspace.app
+                  hello@neighborspace.com
                 </a>
               </div>
             </div>

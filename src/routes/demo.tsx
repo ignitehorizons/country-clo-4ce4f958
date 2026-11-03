@@ -114,7 +114,7 @@ function CC_Demo() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch {
       setStatus("error");
-      setError("We couldn't book your demo. Please try again or email hello@neighborspace.app.");
+      setError("We couldn't book your demo. Please try again or email hello@neighborspace.com.");
     }
   };
 
@@ -301,10 +301,10 @@ function CC_Demo() {
                     <p className="mt-2 font-body text-[13px] text-text-light">
                       Email{" "}
                       <a
-                        href="mailto:hello@neighborspace.app"
+                        href="mailto:hello@neighborspace.com"
                         className="font-semibold text-accent hover:underline"
                       >
-                        hello@neighborspace.app
+                        hello@neighborspace.com
                       </a>{" "}
                       and we'll find a time.
                     </p>
