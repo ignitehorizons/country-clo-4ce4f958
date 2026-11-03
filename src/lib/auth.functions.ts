@@ -1,5 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createClient } from "@supabase/supabase-js";
+import {
+  callEdgeFunction,
+  readSessionCookie,
+  serializeCookie,
+  clearCookie,
+  AUTH_COOKIE,
+} from "./edge.server";
 
 // getRequestHeader / setResponseHeader are auto-injected into server-function
 // handlers by the TanStack Start server-fn transform (see
@@ -9,8 +16,13 @@ import { createClient } from "@supabase/supabase-js";
 // Supabase Auth — real sign-in.
 //
 // The browser never sees the Supabase URL, the publishable key, or the
-// access token. Every auth call runs inside a createServerFn handler, the
-// same boundary as the Edge Function calls in supabaseClient.ts.
+// access token. Every auth call runs inside a createServerFn handler.
+//
+// Profile + role resolution no longer read public.users / role_assignments
+// directly. They go through the "get-my-profile" Edge Function, which
+// enforces visibility server-side and returns the linked profile, the
+// user's communities, and per-community permissions. Account linking goes
+// through the "link-account" Edge Function.
 //
 // Secrets (Settings → Secrets): SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY
 //
@@ -18,19 +30,42 @@ import { createClient } from "@supabase/supabase-js";
 // `sb-cc-auth`, not in localStorage. The browser cannot read it.
 // ---------------------------------------------------------------------------
 
-const AUTH_COOKIE = "sb-cc-auth";
 const COMMUNITY_ID = "1bf4b1af-9b2f-42e7-a027-fd0ab59dee65";
 
 export type UserRole =
   "loggedOut" | "resident" | "admin" | "boardMember" | "blockCaptain" | "developerBuyer" | "vendor";
 
+// Per-community permissions returned by get-my-profile.
+export interface Permissions {
+  can_approve_members: boolean;
+  can_manage_content: boolean;
+  can_manage_events: boolean;
+  can_manage_board: boolean;
+  can_view_full_directory: boolean;
+  can_manage_verification_settings: boolean;
+  can_cross_community_access: boolean;
+}
+
+export interface CommunityMembership {
+  community_id: string;
+  community_name: string;
+  role_label: string;
+  permissions: Permissions;
+}
+
 export interface AuthUser {
+  /** auth.users.id — the Supabase Auth subject. */
   id: string;
+  /** public.users.id — the community profile row, from get-my-profile. */
+  userId: string;
   email: string;
   firstName: string;
   lastName: string;
   initials: string;
   role: UserRole;
+  communities: CommunityMembership[];
+  /** Permissions for the active (Country Close) community, if any. */
+  permissions: Permissions | null;
 }
 
 export interface SessionResult {
@@ -45,7 +80,9 @@ const readSecret = (name: string): string => {
 
 // Server-only: a Supabase client that uses the publishable (anon) key and
 // never persists a session in the worker. Auth state is carried per-request
-// via the access token we read from the cookie.
+// via the access token we read from the cookie. Used only for the Supabase
+// Auth API (signUp / signIn / getUser / signOut / resetPassword); profile and
+// linking go through Edge Functions (callEdgeFunction).
 function makeClient(accessToken?: string) {
   const url = readSecret("SUPABASE_URL");
   const key = readSecret("SUPABASE_PUBLISHABLE_KEY");
@@ -61,106 +98,100 @@ function makeClient(accessToken?: string) {
   });
 }
 
-// --- Cookie helpers --------------------------------------------------------
-// The session JSON (access_token + refresh_token) is stored in the cookie so
-// the server can restore it on the next request. It is httpOnly + Secure +
-// SameSite=Lax so the browser cannot read it and it is not sent on
-// cross-site subrequests.
+// --- Role + profile resolution via get-my-profile --------------------------
 
-function serializeCookie(name: string, value: string, maxAge: number): string {
-  const enc = encodeURIComponent(value);
-  const flags = [`${name}=${enc}`, "Path=/", "HttpOnly", "SameSite=Lax", `Max-Age=${maxAge}`];
-  // Secure in production; the preview is http so we can't enforce it there
-  // or the cookie would never be sent.
-  if (process.env["NODE_ENV"] === "production") flags.push("Secure");
-  return flags.join("; ");
+interface ProfileResponse {
+  user_id: string;
+  first_name: string | null;
+  last_name: string | null;
+  email: string | null;
+  communities: CommunityMembership[] | null;
 }
 
-function clearCookie(name: string): string {
-  return serializeCookie(name, "", 0);
-}
-
-interface StoredSession {
-  access_token: string;
-  refresh_token: string;
-  expires_at?: number | undefined;
-}
-
-function readSessionCookie(): StoredSession | null {
-  const raw = getRequestHeader("cookie") ?? "";
-  if (!raw) return null;
-  for (const part of raw.split(";")) {
-    const [k, ...rest] = part.trim().split("=");
-    if (k === AUTH_COOKIE) {
-      try {
-        const decoded = decodeURIComponent(rest.join("="));
-        const parsed = JSON.parse(decoded) as StoredSession;
-        if (parsed?.access_token) return parsed;
-      } catch {
-        return null;
-      }
-    }
+function mapRoleLabel(roleLabel: string | null | undefined): UserRole {
+  switch (roleLabel?.trim()) {
+    case "Board Member":
+      return "boardMember";
+    case "Admin":
+    case "Community Manager":
+      return "admin";
+    case "Block Captain":
+      return "blockCaptain";
+    case "Developer":
+    case "Builder":
+      return "developerBuyer";
+    case "Vendor":
+      return "vendor";
+    default:
+      return "resident";
   }
-  return null;
 }
-
-// --- Role resolution -------------------------------------------------------
-// Derived server-side from role_assignments for the linked user + the
-// Country Close community. Never trusts a role sent from the browser. If no
-// assignment exists, the role is "resident".
 
 function initialsFrom(first?: string | null, last?: string | null): string {
   const a = (first?.trim()?.[0] ?? "").toUpperCase();
   const b = (last?.trim()?.[0] ?? "").toUpperCase();
-  return a + b || "CC";
+  return a + b || "NS";
 }
 
-async function resolveUser(
-  client: ReturnType<typeof makeClient>,
-  userId: string,
-): Promise<AuthUser | null> {
-  // public.users holds the community profile. auth_user_id links it to
-  // auth.users.id. We match by the confirmed email when linking (see
-  // linkAccount). Here we read the profile + role in one round trip.
-  const [profileRes, roleRes] = await Promise.all([
-    client
-      .from("users")
-      .select("id, first_name, last_name, email, auth_user_id")
-      .eq("auth_user_id", userId)
-      .maybeSingle(),
-    client
-      .from("role_assignments")
-      .select("role")
-      .eq("user_id", userId)
-      .eq("community_id", COMMUNITY_ID)
-      .maybeSingle(),
-  ]);
+// Calls the get-my-profile Edge Function with the signed-in user's access
+// token and builds the AuthUser. The role is derived server-side from the
+// community's role_label — never trusted from the browser. If no assignment
+// exists for the active community, the role is "resident".
+async function resolveProfile(accessToken: string, authUserId: string): Promise<AuthUser | null> {
+  const result = await callEdgeFunction(
+    "get-my-profile",
+    { method: "GET", params: {} },
+    accessToken,
+  );
+  if (!result.ok || !result.data) return null;
 
-  if (profileRes.error || !profileRes.data) return null;
+  const p = result.data as unknown as ProfileResponse;
+  if (!p?.user_id) return null;
 
-  const first = (profileRes.data.first_name as string) ?? "";
-  const last = (profileRes.data.last_name as string) ?? "";
-  const rawRole = (roleRes.data?.role as string) ?? "resident";
-  const role = (
-    ["admin", "boardMember", "blockCaptain", "vendor", "resident"].includes(rawRole)
-      ? rawRole
-      : "resident"
-  ) as UserRole;
+  const communities = p.communities ?? [];
+  // Prefer the Country Close community; fall back to the first membership.
+  const active = communities.find((c) => c.community_id === COMMUNITY_ID) ?? communities[0] ?? null;
+
+  const first = p.first_name ?? "";
+  const last = p.last_name ?? "";
 
   return {
-    id: userId,
-    email: (profileRes.data.email as string) ?? "",
+    id: authUserId,
+    userId: p.user_id,
+    email: p.email ?? "",
     firstName: first,
     lastName: last,
     initials: initialsFrom(first, last),
-    role,
+    role: mapRoleLabel(active?.role_label),
+    communities,
+    permissions: active?.permissions ?? null,
+  };
+}
+
+// --- Account linking via link-account --------------------------------------
+
+interface LinkResult {
+  linked: boolean;
+  reason?: string | null;
+}
+
+async function linkAccountEdge(accessToken: string): Promise<LinkResult> {
+  const result = await callEdgeFunction("link-account", { method: "POST", body: {} }, accessToken);
+  if (!result.ok) {
+    return { linked: false, reason: result.error ?? "We couldn't link your account." };
+  }
+  const data = result.data as unknown as { linked?: boolean; reason?: string | null } | null;
+  return {
+    linked: !!data?.linked,
+    reason: data?.reason ?? null,
   };
 }
 
 // --- Sign up ---------------------------------------------------------------
 // Email + password. Email confirmation is required before the account can
-// sign in (enforced by Supabase Auth config). We do NOT create a public.users
-// row here — linking happens after a confirmed sign-in.
+// sign in (enforced by Supabase Auth config). Linking happens through the
+// link-account Edge Function — at sign-in once the email is confirmed, or
+// immediately if Supabase returns a session (confirmation disabled).
 
 export interface SignUpInput {
   email: string;
@@ -177,23 +208,38 @@ const signUpFn = createServerFn({ method: "POST" })
   .validator((input: SignUpInput) => input)
   .handler(async ({ data }) => {
     const client = makeClient();
-    const { error } = await client.auth.signUp({
+    const { data: session, error } = await client.auth.signUp({
       email: data.email,
       password: data.password,
     });
     if (error) {
       return { ok: false, error: friendlyAuthError(error.message), needsConfirmation: false };
     }
-    // Confirmation email sent by Supabase. The user cannot sign in until they
-    // click the link.
-    return { ok: true, error: null, needsConfirmation: true };
+
+    // Email confirmation required: no session is returned. The user must
+    // confirm before they can sign in; linking then happens at sign-in.
+    const accessToken = session?.session?.access_token;
+    if (!accessToken) {
+      return { ok: true, error: null, needsConfirmation: true };
+    }
+
+    // Immediate session (confirmation disabled) — link now.
+    const link = await linkAccountEdge(accessToken);
+    if (!link.linked) {
+      return {
+        ok: false,
+        error: link.reason ?? "Your account is not yet verified for this community.",
+        needsConfirmation: false,
+      };
+    }
+    return { ok: true, error: null, needsConfirmation: false };
   });
 
 export const signUp = (input: SignUpInput): Promise<AuthActionResult> => signUpFn({ data: input });
 
 // --- Sign in ---------------------------------------------------------------
-// On success, store the session in the httpOnly cookie and link the
-// auth.users.id to public.users.auth_user_id by matching the confirmed email.
+// On success, link the auth account via link-account, store the session in
+// the httpOnly cookie, then resolve the profile + role via get-my-profile.
 
 export interface SignInInput {
   email: string;
@@ -215,8 +261,7 @@ const signInFn = createServerFn({ method: "POST" })
       return { ok: false, error: "Sign-in failed. Please try again.", user: null };
     }
 
-    // Email must be confirmed before portal access. Supabase sets
-    // email_confirmed_at on confirmation; if it's missing, block.
+    // Email must be confirmed before portal access.
     if (!(session.user as { email_confirmed_at?: string | null }).email_confirmed_at) {
       return {
         ok: false,
@@ -226,21 +271,22 @@ const signInFn = createServerFn({ method: "POST" })
       };
     }
 
-    // Link auth.users.id -> public.users.auth_user_id by matching the
-    // confirmed email. Only link when the email is confirmed and the profile's
-    // auth_user_id is currently null. If no public.users row matches, the
-    // account is not yet verified for this community.
-    const linked = await linkAccount(client, session.user.id, session.user.email ?? "");
-    if (!linked) {
+    const accessToken = session.session?.access_token ?? "";
+
+    // Link auth.users.id -> public.users via the link-account Edge Function.
+    // If it returns { linked: false, reason }, surface the reason (e.g.
+    // "Your account is waiting for board approval").
+    const link = await linkAccountEdge(accessToken);
+    if (!link.linked) {
       return {
         ok: false,
-        error: "Your account is not yet verified for this community.",
+        error: link.reason ?? "Your account is not yet verified for this community.",
         user: null,
       };
     }
 
-    const stored: StoredSession = {
-      access_token: session.session?.access_token ?? "",
+    const stored = {
+      access_token: accessToken,
       refresh_token: session.session?.refresh_token ?? "",
       expires_at: session.session?.expires_at,
     };
@@ -249,7 +295,7 @@ const signInFn = createServerFn({ method: "POST" })
       serializeCookie(AUTH_COOKIE, JSON.stringify(stored), 60 * 60 * 24 * 7),
     );
 
-    const user = await resolveUser(client, session.user.id);
+    const user = await resolveProfile(accessToken, session.user.id);
     return { ok: true, error: null, user };
   });
 
@@ -258,35 +304,10 @@ export const signIn = (
 ): Promise<{ ok: boolean; error: string | null; user: AuthUser | null }> =>
   signInFn({ data: input });
 
-// Linking: match the confirmed email on public.users. Only set auth_user_id
-// when it is currently null. Never create a row.
-async function linkAccount(
-  client: ReturnType<typeof makeClient>,
-  authUserId: string,
-  email: string,
-): Promise<boolean> {
-  if (!email) return false;
-  const { data: existing, error } = await client
-    .from("users")
-    .select("id, auth_user_id, email")
-    .eq("email", email)
-    .maybeSingle();
-  if (error || !existing) return false;
-  if (existing.auth_user_id === authUserId) return true; // already linked
-  if (existing.auth_user_id !== null) return false; // linked to someone else
-  const { error: updateError } = await client
-    .from("users")
-    .update({ auth_user_id: authUserId })
-    .eq("id", existing.id)
-    .is("auth_user_id", null);
-  if (updateError) return false;
-  return true;
-}
-
 // --- Sign out --------------------------------------------------------------
 
 const signOutFn = createServerFn({ method: "POST" }).handler(async () => {
-  const stored = readSessionCookie();
+  const stored = readSessionCookie(getRequestHeader("cookie"));
   if (stored?.access_token) {
     try {
       const client = makeClient(stored.access_token);
@@ -304,15 +325,15 @@ export const signOut = (): Promise<{ ok: boolean }> => signOutFn();
 // --- Get session (restore on load) -----------------------------------------
 
 const getSessionFn = createServerFn({ method: "GET" }).handler(async () => {
-  const stored = readSessionCookie();
+  const stored = readSessionCookie(getRequestHeader("cookie"));
   if (!stored?.access_token) return { user: null };
   const client = makeClient(stored.access_token);
-  // Refresh if the token is close to expiry.
+  // Verify the token is still valid.
   const { data: refreshed, error } = await client.auth.getUser(stored.access_token);
   if (error || !refreshed?.user) {
     return { user: null };
   }
-  const user = await resolveUser(client, refreshed.user.id);
+  const user = await resolveProfile(stored.access_token, refreshed.user.id);
   return { user };
 });
 

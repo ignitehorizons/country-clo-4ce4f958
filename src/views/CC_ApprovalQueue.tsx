@@ -6,7 +6,6 @@ import {
   fetchPendingVerifications,
   fetchResident,
   COUNTRY_CLOSE_COMMUNITY_ID,
-  TEST_BOARD_USER_ID,
   formatDisplayName,
   type VerificationRequest,
   type DirectoryEntry,
@@ -62,9 +61,8 @@ export const CC_ApprovalQueue = () => {
 
   const handleDecision = async (req: EnrichedRequest, decision: "Approved" | "Denied") => {
     if (!req.user_id) return;
-    // reviewer_user_id = the real board member UUID. The mock auth system
-    // has no real UUID, so we use the configured test board user id.
-    const reviewerUserId = TEST_BOARD_USER_ID;
+    // The reviewer is now derived from the signed-in user's access token
+    // server-side; no reviewer_user_id is sent from the client.
 
     setDecisions((d) => ({
       ...d,
@@ -74,7 +72,6 @@ export const CC_ApprovalQueue = () => {
     const result = await approveVerification({
       verification_request_id: req.id,
       decision,
-      reviewer_user_id: reviewerUserId,
     });
 
     if (!result.ok) {
