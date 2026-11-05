@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { getRequestHeader, setResponseHeader } from "@tanstack/react-start/server";
 import { createClient } from "@supabase/supabase-js";
 import {
   callEdgeFunction,
@@ -8,9 +9,8 @@ import {
   AUTH_COOKIE,
 } from "./edge.server";
 
-// getRequestHeader / setResponseHeader are auto-injected into server-function
-// handlers by the TanStack Start server-fn transform (see
-// src/types/tanstack-request.d.ts). They are not an import.
+// getRequestHeader / setResponseHeader are imported from
+// @tanstack/react-start/server (not auto-injected globals).
 
 // ---------------------------------------------------------------------------
 // Supabase Auth — real sign-in.

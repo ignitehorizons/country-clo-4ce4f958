@@ -10,6 +10,7 @@
 // ---------------------------------------------------------------------------
 
 import type { Json } from "./json";
+import { getRequestHeader } from "@tanstack/react-start/server";
 
 export const AUTH_COOKIE = "sb-cc-auth";
 
@@ -27,9 +28,7 @@ export interface EdgeResult {
 }
 
 // Read the sb-cc-auth session cookie from the incoming request headers.
-// getRequestHeader is injected into server-function handlers by the TanStack
-// Start server-fn transform. We accept it as a parameter so this helper can be
-// unit-tested and so the caller controls the request boundary.
+// getRequestHeader is imported from @tanstack/react-start/server.
 export function readSessionCookie(cookieHeader: string | undefined | null): StoredSession | null {
   const raw = cookieHeader ?? "";
   if (!raw) return null;
@@ -48,8 +47,8 @@ export function readSessionCookie(cookieHeader: string | undefined | null): Stor
   return null;
 }
 
-// Convenience: pull the access token straight from the request header using
-// the injected getRequestHeader. Returns null when there is no session.
+// Convenience: pull the access token straight from the request header.
+// Returns null when there is no session.
 export function readAccessToken(): string | null {
   const stored = readSessionCookie(getRequestHeader("cookie"));
   return stored?.access_token ?? null;

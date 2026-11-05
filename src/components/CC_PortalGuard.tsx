@@ -69,7 +69,8 @@ export const CC_PortalGuard = () => {
       setFormSuccess("If an account exists for that email, a reset link is on its way.");
       setMode("signin");
       setBusy(false);
-    } catch {
+    } catch (error) {
+      console.error("[auth] sign-in/sign-up/reset failed", error);
       setFormError("We couldn't complete that request. Please try again.");
       setBusy(false);
     }
